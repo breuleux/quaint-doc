@@ -1,0 +1,93 @@
+
+@import util
+
+html
+  height: 100%
+
+body
+  @include column
+  /* font-family: 'Open Sans', sans-serif
+  font-family: 'Alegreya', serif
+  /* font-family: 'Exo 2', sans-serif
+  font-size: $font-size
+  height: 100%
+  margin: 0px
+
+.quaint-word
+  font-family: 'Exo 2'
+  font-weight: 800
+  /* font-family: 'Alegreya'
+  /* font-weight: 900
+
+.navlink:hover
+  background-color: #6e3d0c
+
+#nav-container
+  /* background-color: #92785e
+  background-color: #5e2d0c
+  color: white
+  #nav
+    @include rownav
+    font-family: 'Exo 2'
+    height: 40px
+    > .filler
+      flex-grow: 1
+    > .quaint-word
+      color: #f0c8a0
+    > .logo
+      height: 30px
+    > *
+      margin-right: 20px
+
+#present-container
+  background-color: #6e3d1c
+  /* background-color: #c89767
+  /* background-color: #f0c8a0
+  #present
+    @include column
+    align-items: center
+    color: white
+    > .logo
+      margin-top: 40px
+      margin-bottom: 20px
+    > .quaint-description
+      color: #c89767
+      font-size: 25pt
+      margin-bottom: 20px
+    .quaint-word
+      color: #f0c8a0
+      display: inline-block
+      vertical-align: middle
+      font-size: 40pt
+
+$padding: 30px
+$perrow: 2
+.selling-points
+  @include row
+  flex-wrap: wrap
+  align-items: flex-start
+  width: $main-width
+  > div
+    box-sizing: border-box
+    padding: $padding
+    width: $main-width / $perrow
+    > .title
+      font-weight: bold
+      font-size: 20pt
+    > .description
+      font-style: italic
+      font-size: 16pt
+
+
+#main-container
+  background-color: #eee
+  flex-grow: 1
+  #main
+    @include block
+
+#foot-container
+  background-color: #000
+  #foot
+    @include rownav
+    color: white
+    height: 40px

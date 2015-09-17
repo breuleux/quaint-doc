@@ -1,0 +1,39 @@
+
+meta ::
+  title = Index
+  template = nav
+
+resources ::
+  hello!
+
+[\title !!! \description] =>
+  div %
+    div.title % {title}
+    div.description % {description}
+
+div#present-container %
+  div#present %
+    img.logo %
+       src = {siteroot}assets/quaint-beige.png
+       height = 80px
+    div.quaint-word % QUAINT
+    div.quaint-description %
+       _[the extensible markup language]
+    div.selling-points %
+      Terse !!!
+        A small set of intuitive operators that
+        get out of your way.
+      Complete !!!
+        Format lists and tables, highlight code, build HTML.
+      Powerful !!!
+        Embed JavaScript, simplify your workflow with macros,
+        generate indexes and tables of contents.
+      Extensible !!!
+        Plugins can be written in JavaScript in a matter of
+        minutes. Macros can be written in a matter of seconds.
+
+div#main-container.container % div#main % [
+
+
+
+]
