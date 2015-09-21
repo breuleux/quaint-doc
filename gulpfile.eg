@@ -4,6 +4,9 @@ require-macros:
 
 require:
    @breuleux/engage-config
+   quaint -> tools -> dedent
+   quaint-javascript
+   quaint-highlight
    node-static
    gulp
    http
@@ -12,10 +15,20 @@ opts = {
    hostname = "http://breuleux.github.io"
    root = "/quaint/"
    assets-root = "/quaint/assets/"
-   default-language = "earlgrey"
+   default-language = null
    default-extension = ".html"
    default-image-extension = ".png"
    server-port = "3003"
+   customize{@} =
+      @register-macros with {
+         interactive{engine, body} =
+            q = quaint{quaint-javascript, quaint-highlight}
+            div.quaint-input %
+               textarea %
+                  dedent{body.raw{}}.trim{}
+               div.target %
+                  raw % q.toHTML{body, paragraph = true}
+      }
 }
 
 task make:
@@ -26,5 +39,6 @@ task serve:
    http.create-server{f}.listen{opts.server-port} where f{req, res} =
       req.add-listener{.end, f}.resume{} where f{} =
          s.serve{req, res}
+   print 'Listening on port {opts.server-port}'
 
 task default < {make, serve}

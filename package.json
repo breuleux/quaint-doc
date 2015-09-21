@@ -23,7 +23,15 @@
       "baseURL": "content/lib",
       "packages": "output/quaint/lib/jspm_packages"
     },
-    "dependencies": {},
+    "dependencies": {
+      "earlgrey-runtime": "npm:earlgrey-runtime@^0.0.10",
+      "jquery": "github:components/jquery@^2.1.4",
+      "lodash.throttle": "npm:lodash.throttle@^3.0.4",
+      "quaint": "npm:quaint@^0.0.6",
+      "quaint-highlight": "npm:quaint-highlight@^0.0.0",
+      "quaint-javascript": "npm:quaint-javascript@^0.0.1",
+      "vm": "github:jspm/nodelibs-vm@^0.1.0"
+    },
     "devDependencies": {}
   },
   "private": true
