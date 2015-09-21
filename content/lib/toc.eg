@@ -1,0 +1,27 @@
+
+globals: document
+
+require:
+   "lodash.throttle" as throttle
+
+provide: main
+
+main{} =
+   anchor = document.body
+   hl-toc-entry{} =
+      names = {}
+      document.query-selector-all{"h1, h2, h3"} each s ->
+         if s.offset-top > anchor.scroll-top + 50:
+            document.query-selector-all{'ul.toc a'} each link ->
+               link.class-name = ""
+            if names.length:
+               elem = document.query-selector{'a[href="#{names[0]}"]'}
+               if elem:
+                  elem.class-name = "selected"
+                  break
+               else:
+                  names.shift{}
+         else:
+            names.unshift{s.id}
+   hl-toc-entry{}
+   anchor.onscroll = throttle{hl-toc-entry, 50}
