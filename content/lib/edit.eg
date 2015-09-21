@@ -1,0 +1,19 @@
+
+require:
+   quaint
+   quaint-javascript
+   quaint-highlight
+
+globals: document
+
+provide: main
+
+main{} =
+   eds = document.query-selector-all{".quaint-input"}
+   eds each ed ->
+      editor = ed.children[0]
+      target = ed.children[1]
+      editor.onkeyup{e} =
+         q = quaint{quaint-javascript{}, quaint-highlight}
+         target.innerHTML = q.translate{editor.value, .html, paragraph = true}
+

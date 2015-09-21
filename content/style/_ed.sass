@@ -1,0 +1,37 @@
+
+@import util
+
+.quaint-input
+  @include row
+  height: 200px
+  align-items: flex-start
+  > *
+    box-sizing: border-box
+    height: 100%
+  > textarea
+    border: 2px solid black
+    width: 50%
+  > .target
+    margin-top: -15px
+    padding: 5px
+    padding-left: 20px
+    width: 50%
+
+#instructions .quaint-input
+  margin-top: 30px
+  margin-bottom: 30px
+  height: 400px
+  > textarea
+    width: 40%
+  > .target
+    padding-left: 30px
+    width: 60%
+
+#interactive-basics .quaint-input
+  height: 550px
+
+#interactive-macros .quaint-input
+  height: 450px
+
+#interactive-variables .quaint-input
+  height: 400px
