@@ -13,29 +13,58 @@ body
   height: 100%
   margin: 0px
 
+#page
+  height: 100%
+
+
+#logo-link
+  @include row
+
 .quaint-word
   font-family: 'Exo 2'
   font-weight: 800
   /* font-family: 'Alegreya'
   /* font-weight: 900
 
-.navlink:hover
-  background-color: #6e3d0c
+.navlink > a
+  line-height: $header-height
+  display: inline-block
+  color: white
+  text-decoration: none
+  display: inline-block
+
+.navlink:hover > a
+  color: orange
+
+
+#nav-container
+  position: fixed
+  left: 0px
+  top: 0px
+
+#main-container
+  margin-top: $header-height
+  padding-bottom: $foot-height
+
 
 #nav-container
   /* background-color: #92785e
+  width: 100%
   background-color: #5e2d0c
   color: white
   #nav
     @include rownav
     font-family: 'Exo 2'
-    height: 40px
+    height: $header-height
     > .filler
       flex-grow: 1
-    > .quaint-word
-      color: #f0c8a0
-    > .logo
-      height: 30px
+    > #logo-link
+      > *
+        margin-right: 20px
+      > .quaint-word
+        color: #f0c8a0
+      > .logo
+        height: $header-height - 10px
     > *
       margin-right: 20px
 
@@ -82,12 +111,54 @@ $perrow: 2
 #main-container
   background-color: #eee
   flex-grow: 1
+  /* height: 100%
+  overflow: auto
   #main
     @include block
 
 #foot-container
-  background-color: #000
+  background-color: #5e2d0c
   #foot
     @include rownav
     color: white
-    height: 40px
+    height: $foot-height
+
+
+#sidebar
+  position: fixed
+  left: 0px
+  top: 0px
+  /* border: 2px solid black
+  height: 100%
+  padding-top: $header-height + 20px
+  padding-bottom: $foot-height + 40px
+  width: 400px
+  box-sizing: border-box
+  overflow: auto
+  .sidenav-contents
+    position: relative
+    height: 100%
+    overflow: auto
+
+ul.toc
+  padding-left: 30px
+  list-style-type: none
+  ul
+    padding-left: 20px
+    list-style-type: none
+  a
+    /* position: relative
+    color: #000
+  a.selected
+    font-weight: bold
+  a.selected:before
+    position: absolute
+    left: 10px
+    content: "\25B6"
+
+ul.toc li
+  padding-bottom: 0px
+
+@media screen and (max-width: $main-width+500px)
+  #sidebar
+    display: none
