@@ -4,16 +4,143 @@ require:
    quaint-javascript
    quaint-highlight
 
-globals: document
+provide:
+   ;; setupWorker
+   ;; setupNoWorker
+   Updater
+   UpdaterWorker
+   main
 
-provide: main
+globals:
+   document
+   postMessage
+   Worker
+   hljs
+
+wait = promisify with {d, f} -> setTimeout.call{null, f, d}
+
+qgen{value} =
+   vm = {
+      create-context{x} = x
+      run-in-context{code, x} =
+         global &: x
+         eval{code}
+   }
+   q = quaint{
+      quaint-javascript{sandbox = global, = vm}
+      quaint-highlight{hljs = hljs}
+   }
+   q.translate{value, .html} ;;, paragraph = true}
+
+
+class Updater:
+   constructor{@target, @text} =
+      @changed = false
+   update{match text, regen = true} =
+      when not regen ->
+         @text = text
+      == @text ->
+         pass
+      else ->
+         @text = text
+         @changed = true
+   async work{} =
+      while true:
+         await wait{50}
+         if @changed:
+            @changed = false
+            try:
+               @target.innerHTML = qgen{@text}
+            catch e:
+               print e
+
+class UpdaterWorker:
+   constructor{} =
+      @changes = {=}
+      @values = {=}
+   onmessage{{id, match text, regen = true}} =
+      when not regen ->
+         @values[id] = text
+      !== @values[id] ->
+         @changes[id] = true
+         @values[id] = text
+      else ->
+         pass
+   async work{} =
+      while true:
+         await wait{10}
+         match keys{@changes}:
+            {id, *} ->
+               delete @changes[id]
+               try:
+                  postMessage{{id, qgen{@values[id]}}}
+               catch e:
+                  print e
+            else ->
+               pass
+
+
+;; var last-id = 0
+
+;; setupWorker{worker, editor, target, regen = true} =
+;;    last-id += 1
+;;    id = last-id
+;;    print 'heh {id}'
+;;    worker = new Worker{"lib/work.js"}
+;;    worker.onmessage{m} =
+;;       print "messagee!"
+;;       target.innerHTML = m.data
+;;    worker.postMessage with {id, editor.value, regen}
+;;    editor.onkeyup{e} =
+;;       print "yes?"
+;;       worker.postMessage with {id, editor.value, true}
+;;    print 'DONE'
+
+
+setupNoWorker{editor, target, regen = true} =
+   worker = Updater{target, editor.value}
+   worker.work{}
+   worker.update{editor.value, regen}
+   editor.onkeyup{e} =
+      worker.update{editor.value}
+
 
 main{} =
-   eds = document.query-selector-all{".quaint-input"}
+   var last-id = 0
+   targets = {=}
+   worker = new Worker{"lib/work.js"}
+   worker.onmessage{m} =
+      {id, text} = m.data
+      targets[id].innerHTML = text
+
+   eds = document.query-selector-all{".quaint-example"}
    eds each ed ->
+      last-id += 1
+      id = last-id
       editor = ed.children[0]
       target = ed.children[1]
+      targets[id] = target
+      worker.postMessage with {id, editor.value, false}
       editor.onkeyup{e} =
-         q = quaint{quaint-javascript{}, quaint-highlight}
-         target.innerHTML = q.translate{editor.value, .html, paragraph = true}
+         worker.postMessage with {id, editor.value, true}
 
+
+
+
+;; main{} =
+;;    eds = document.query-selector-all{".quaint-input"}
+;;    eds each ed ->
+;;       editor = ed.children[0]
+;;       target = ed.children[1]
+;;       setupWorker{editor, target, false}
+
+
+
+;; main{} =
+;;    eds = document.query-selector-all{".quaint-input"}
+;;    eds each ed ->
+;;       editor = ed.children[0]
+;;       target = ed.children[1]
+;;       editor.onkeyup{e} =
+;;          q = quaint{quaint-javascript{}, quaint-highlight}
+;;          target.innerHTML = q.translate{editor.value, .html, paragraph = true}

@@ -1,37 +1,35 @@
 
 @import util
 
-.quaint-input
+.quaint-example
   @include row
-  height: 200px
   align-items: flex-start
-  > *
-    box-sizing: border-box
-    height: 100%
-  > textarea
-    border: 2px solid black
+  margin-top: 5px
+  margin-bottom: 5px
+  .input
+    font-size: 12pt
     width: 50%
-  > .target
-    margin-top: -15px
-    padding: 5px
-    padding-left: 20px
+    background-color: transparent
+    border: 0px
+    border-left: 5px solid purple
+    padding-left: 8px
+  .output
     width: 50%
+    margin-left: 10px
+    border-left: 5px solid green
+    padding-left: 8px
+    > ul:first-child, > ol:first-child, > p:first-child,
+    > h1:first-child, > h2:first-child, > h3:first-child,
+    > h4:first-child, > h5:first-child, > h6:first-child,
+    > ul:last-child, > ol:last-child, > p:last-child,
+    > h1:last-child, > h2:last-child, > h3:last-child,
+    > h4:last-child, > h5:last-child, > h6:last-child
+      margin-top: 0px
+      margin-bottom: 0px
 
-#instructions .quaint-input
-  margin-top: 30px
-  margin-bottom: 30px
-  height: 400px
-  > textarea
-    width: 40%
-  > .target
-    padding-left: 30px
-    width: 60%
-
-#interactive-basics .quaint-input
-  height: 550px
-
-#interactive-macros .quaint-input
-  height: 450px
-
-#interactive-variables .quaint-input
-  height: 400px
+#instructions .quaint-example
+  .input
+    background-color: white
+    border-left: 0px
+  .output
+    border-left: 0px
