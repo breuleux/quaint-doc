@@ -1,0 +1,39 @@
+
+@import ornate
+
+@mixin left($size, $factor)
+  position: absolute
+  left: -$size/$factor - 15px
+  bottom: 50%
+  margin: 0px
+  margin-bottom: -$size/2
+
+@mixin ldisk($size, $factor)
+  @include disk($size)
+  @include left($size, $factor)
+
+@mixin lsquare($size, $factor)
+  @include square($size)
+  @include left($size, $factor)
+
+$h1sz: 20px
+h1
+  position: relative
+h1:before
+  @include lsquare($h1sz, 1)
+  background-color: #5e2d0c
+  color: white
+  content: ""
+
+$h2sz: 10px
+h2
+  position: relative
+h2:before
+  @include ldisk($h2sz, 1)
+  background-color: #aaa
+  color: white
+  content: ""
+
+.output h1:before, .output h2:before
+  display: none
+  

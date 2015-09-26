@@ -2,7 +2,8 @@
 meta :: template = boilerplate
 
 div#sidebar %
-  store sidebar :: dump!
+  div#sidebar-contents %
+    store sidebar :: dump!
 
 div#page %
   div#nav-container.container %
