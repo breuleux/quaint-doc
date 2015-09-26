@@ -26,9 +26,10 @@ opts = {
             q = quaint{quaint-javascript, quaint-highlight}
             b = dedent{raw-relative{body}}.trim{}
             div.quaint-example %
-               textarea.input %
-                  rows = if{rows.raw{}.trim{}, rows.raw{}, b.split{"\n"}.length}
-                  b
+               div.input %
+                  textarea %
+                     rows = if{rows.raw{}.trim{}, rows.raw{}, b.split{"\n"}.length}
+                     b
                div.output %
                   raw % q.toHTML{b} ;;, paragraph = true}
       }
