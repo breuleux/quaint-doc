@@ -1,18 +1,14 @@
 
 meta ::
-  title = Index
+  title = Syntax
   template = default
 
 resources ::
-  edit! toc!
+  toc! edit!
   highlight.pack.js
 
 store sidebar ::
   toc::
-
-
-.intro %
-  Welcome to the documentation about Quaint's syntax!
 
 
 = Basics
@@ -240,7 +236,7 @@ If there is no tag, the default is `div.
 
    span.err %
      style = color:red
-     An __error occurred!
+     An __error occurred! (Not really)
 
 
 == `html macro
