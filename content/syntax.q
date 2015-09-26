@@ -4,8 +4,9 @@ meta ::
   template = default
 
 resources ::
-  toc! edit!
+  toc-scroll.js
   highlight.pack.js
+  edit!
 
 store sidebar ::
   toc::

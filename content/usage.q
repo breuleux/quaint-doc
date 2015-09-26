@@ -4,7 +4,7 @@ meta ::
   template = default
 
 resources ::
-  toc!
+  toc-scroll.js
 
 store sidebar ::
   toc::
