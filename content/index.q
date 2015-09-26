@@ -39,7 +39,7 @@ div.spacer1 % []
 div#main % [
 
 div#instructions %
-  interactive ::
+  100 &&
     ;; Edit me!!!
     
 
@@ -69,7 +69,7 @@ div#instructions %
     * Learn the syntax! @@
         /quaint/syntax.html
     * JavaScript API @@ /quaint/api.html
-    * Flip through the plugins @@
+    * Check out the plugins @@
         /quaint/plugins.html
     
 

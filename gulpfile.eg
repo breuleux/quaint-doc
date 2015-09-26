@@ -4,7 +4,8 @@ require-macros:
 
 require:
    @breuleux/engage-config
-   quaint -> tools -> dedent
+   quaint -> tools ->
+      dedent, raw-relative
    quaint-javascript
    quaint-highlight
    node-static
@@ -20,14 +21,16 @@ opts = {
    default-image-extension = ".png"
    server-port = "3003"
    customize{@} =
-      @register-macros with {
-         interactive{engine, body} =
+      @register-rule with {
+         "\\maybe\\rows && \\body"{engine, {=> body, => rows}} =
             q = quaint{quaint-javascript, quaint-highlight}
-            div.quaint-input %
-               textarea %
-                  dedent{body.raw{}}.trim{}
-               div.target %
-                  raw % q.toHTML{body, paragraph = true}
+            b = dedent{raw-relative{body}}.trim{}
+            div.quaint-example %
+               textarea.input %
+                  rows = if{rows.raw{}.trim{}, rows.raw{}, b.split{"\n"}.length}
+                  b
+               div.output %
+                  raw % q.toHTML{b} ;;, paragraph = true}
       }
 }
 
