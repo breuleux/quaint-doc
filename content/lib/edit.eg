@@ -1,12 +1,10 @@
 
 require:
    quaint
-   quaint-javascript
-   quaint-highlight
+   quaint-javascript as qjs
+   "quaint-highlight/plain" as qhl
 
 provide:
-   ;; setupWorker
-   ;; setupNoWorker
    Updater
    UpdaterWorker
    main
@@ -27,8 +25,8 @@ qgen{value} =
          eval{code}
    }
    q = quaint{
-      quaint-javascript{sandbox = global, = vm}
-      quaint-highlight{hljs = hljs}
+      qjs{sandbox = global, = vm}
+      qhl{hljs = hljs}
    }
    q.translate{value, .html} ;;, paragraph = true}
 
@@ -123,24 +121,3 @@ main{} =
       worker.postMessage with {id, editor.value, false}
       editor.onkeyup{e} =
          worker.postMessage with {id, editor.value, true}
-
-
-
-
-;; main{} =
-;;    eds = document.query-selector-all{".quaint-input"}
-;;    eds each ed ->
-;;       editor = ed.children[0]
-;;       target = ed.children[1]
-;;       setupWorker{editor, target, false}
-
-
-
-;; main{} =
-;;    eds = document.query-selector-all{".quaint-input"}
-;;    eds each ed ->
-;;       editor = ed.children[0]
-;;       target = ed.children[1]
-;;       editor.onkeyup{e} =
-;;          q = quaint{quaint-javascript{}, quaint-highlight}
-;;          target.innerHTML = q.translate{editor.value, .html, paragraph = true}
