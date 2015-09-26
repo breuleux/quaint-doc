@@ -39,7 +39,7 @@ div.spacer1 % []
 div#main % [
 
 div#instructions %
-  100 &&
+  50 &&
     ;; Edit me!!!
     
 
@@ -56,9 +56,7 @@ div#instructions %
     
     bash & npm install quaint -g
     
-    This will install the `quaint command on your system. Then you can convert quaint markup to HTML! Let me just get you started:
-    
-    bash & quaint --help
+    This will install the `quaint command on your system. Then you can convert quaint markup to HTML! See usage@@@usage.
     
     ;\)
 
@@ -70,7 +68,7 @@ div#instructions %
         /quaint/syntax.html
     * JavaScript API @@ /quaint/api.html
     * Check out the plugins @@
-        /quaint/plugins.html
+        /quaint/plugins/index.html
     
 
 

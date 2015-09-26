@@ -16,6 +16,7 @@ div#page %
           height = 30px
       div.filler % []
       div.navlink % Syntax@@{siteroot}syntax.html
+      div.navlink % Usage@@{siteroot}usage.html
       div.navlink % API@@{siteroot}api.html
       div.navlink % Plugins@@{siteroot}plugins/index.html
       div.navlink % [Try it!]@@{siteroot}tryit.html
