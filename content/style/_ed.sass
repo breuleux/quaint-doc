@@ -7,29 +7,60 @@
   margin-top: 5px
   margin-bottom: 5px
   .input
-    font-size: 12pt
     width: 50%
-    background-color: transparent
-    border: 0px
     border-left: 5px solid purple
     padding-left: 8px
+  .input textarea
+    width: 100%
+    font-size: 12pt
+    background-color: transparent
+    border: 0px
   .output
     width: 50%
     margin-left: 10px
     border-left: 5px solid green
     padding-left: 8px
-    > ul:first-child, > ol:first-child, > p:first-child,
+    > ul:first-child, > ol:first-child, > p:first-child, > pre:first-child,
     > h1:first-child, > h2:first-child, > h3:first-child,
-    > h4:first-child, > h5:first-child, > h6:first-child,
-    > ul:last-child, > ol:last-child, > p:last-child,
+    > h4:first-child, > h5:first-child, > h6:first-child
+      margin-top: 0px
+    > ul:last-child, > ol:last-child, > p:last-child, > pre:last-child,
     > h1:last-child, > h2:last-child, > h3:last-child,
     > h4:last-child, > h5:last-child, > h6:last-child
-      margin-top: 0px
       margin-bottom: 0px
 
 #instructions .quaint-example
   .input
-    background-color: white
     border-left: 0px
+  .input textarea
+    background-color: white
   .output
     border-left: 0px
+
+#tryit
+  margin-top: $header-height
+  padding-top: 20px
+  padding-bottom: 20px
+  /* padding-left: 40px
+  /* padding-right: 40px
+  background-color: #eee
+  flex-grow: 1
+  @include column
+  align-items: center
+  .quaint-example
+    width: 1300px
+    align-items: stretch
+    flex-grow: 1
+    .input
+      @include column
+    .input textarea
+      flex-grow: 1
+      height: 100%
+      background-color: white
+      z-index: 100
+    .input
+      border-left: 0px
+      width: 500px
+    .output
+      border-left: 0px
+      width: 700px

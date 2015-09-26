@@ -115,7 +115,7 @@ main{} =
    eds each ed ->
       last-id += 1
       id = last-id
-      editor = ed.children[0]
+      editor = ed.children[0].children[0]
       target = ed.children[1]
       targets[id] = target
       worker.postMessage with {id, editor.value, false}
