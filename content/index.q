@@ -1,6 +1,6 @@
 
 meta ::
-  title = Index
+  title = Quaint
   template = nav
 
 resources ::
@@ -56,7 +56,7 @@ div#instructions %
     
     bash & npm install quaint -g
     
-    This will install the `quaint command on your system. Then you can convert quaint markup to HTML! See usage@@@usage.
+    This will install the `quaint command on your system. Then you can convert quaint markup to HTML! See usage@@usage.html.
     
     ;\)
 
