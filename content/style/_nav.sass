@@ -135,7 +135,7 @@ $perrow: 2
   height: 100%
   padding-top: $header-height
   padding-bottom: $foot-height
-  width: 400px
+  width: $sidebar-width
   box-sizing: border-box
   #sidebar-contents
     position: relative
@@ -162,6 +162,6 @@ ul.toc
 ul.toc li
   padding-bottom: 0px
 
-@media screen and (max-width: $main-width+500px)
+@media screen and (max-width: $main-width + $sidebar-width * 2 + 100px)
   #sidebar
     display: none
