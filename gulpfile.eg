@@ -21,7 +21,7 @@ opts = {
    default-image-extension = ".png"
    server-port = "3003"
    customize{@} =
-      @register-rule with {
+      @register-rules with {
          "\\maybe\\rows && \\body"{engine, {=> body, => rows}} =
             q = quaint{quaint-javascript, quaint-highlight}
             b = dedent{raw-relative{body}}.trim{}
