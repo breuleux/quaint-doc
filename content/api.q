@@ -591,6 +591,8 @@ method translate(src, format, options) ::
 
 
 
+;; [
+
 = Examples
 
 Calculator example:
@@ -620,8 +622,5 @@ javascript &
     
     // Note that this returns 14, not 10, because Quaint's operators are right-associative
     var html = q.toHTML("calculate :: 2 * 3 + 4")
-
-
-
-
+]
 
