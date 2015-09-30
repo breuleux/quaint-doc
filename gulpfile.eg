@@ -21,6 +21,19 @@ opts = {
    default-image-extension = ".png"
    server-port = "3003"
    customize{@} =
+      @register-macros with {
+         .method{engine, spec, description} =
+            {=> name, => args} = spec.extract{"\\name(\\maybe\\args)"}
+            {
+               engine.into{.sections, {2, code % name.raw{}, name.raw{}}}
+               div.qmethod %
+                  h2 %
+                     id = name.raw{}
+                     code % spec.raw{}
+                  div.qmethod-description %
+                     engine.gen{description}
+            }
+      }
       @register-rules with {
          "\\maybe\\rows && \\body"{engine, {=> body, => rows}} =
             q = quaint{quaint-javascript, quaint-highlight}
