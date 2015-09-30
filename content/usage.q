@@ -1,7 +1,8 @@
 
+template :: default
+
 meta ::
   title = Usage
-  template = default
 
 resources ::
   toc-scroll.js
@@ -82,9 +83,10 @@ Now you can write the post:
 __post.q
 
 &
+  template :: boilerplate
+
   meta ::
     title = New post!
-    template = boilerplate
 
   Hello! This is a new post!
 
@@ -103,7 +105,7 @@ bash &
   quaint post.q -t templates/ # Will use templates/boilerplate.q
 
 Lastly: it is possible for a template to have a template (using the
-same `[meta :: template = xyz] syntax that we saw). This is not a
+same `[template :: xyz] syntax that we saw). This is not a
 problem at all unless you create a cycle (in which case `quaint will
 crash).
 

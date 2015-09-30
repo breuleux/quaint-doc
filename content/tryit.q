@@ -1,7 +1,8 @@
 
+template :: nav
+
 meta ::
   title = Try it!
-  template = nav
 
 resources ::
   toc! edit!

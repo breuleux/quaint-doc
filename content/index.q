@@ -1,7 +1,8 @@
 
+template :: nav
+
 meta ::
   title = Quaint
-  template = nav
 
 resources ::
   edit!

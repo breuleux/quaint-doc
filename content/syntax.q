@@ -1,7 +1,8 @@
 
+template :: default
+
 meta ::
   title = Syntax
-  template = default
 
 resources ::
   toc-scroll.js
@@ -106,9 +107,9 @@ The ampersand operator creates a code block:
 
 && & This is a code block
 
-If you wish to highlight the code in a particular language, use the
-[quaint-highlight]@@{qhl} plugin and then write out the language
-before the `[&]:
+If you wish to highlight the code in a particular language, you need
+to use the [quaint-highlight]@@{qhl} plugin and then write out the
+language before the `[&]:
 
 qhl => //github.com/breuleux/quaint-highlight
 
@@ -116,6 +117,8 @@ qhl => //github.com/breuleux/quaint-highlight
      function square(x) {
          return x * x;
      }
+
+This will _not work if you don't use the plugin.
 
 
 == Inline code

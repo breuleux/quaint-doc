@@ -1,7 +1,8 @@
 
+template :: default
+
 meta ::
   title = Plugins
-  template = default
 
 [plugin \user/\name :: \description] =>
   div.plugin %

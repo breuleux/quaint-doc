@@ -1,5 +1,5 @@
 
-meta :: template = boilerplate
+template :: boilerplate
 
 div#sidebar %
   div#sidebar-contents %
