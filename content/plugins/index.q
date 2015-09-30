@@ -14,8 +14,8 @@ meta ::
 The following plugins are currently available. More will follow!
 Follow the links for more information.
 
-plugin breuleux/quaint-highlight ::
-  Syntax highlighting for a hundred of languages.
+
+= Programming languages
 
 plugin breuleux/quaint-javascript ::
   Enables embedded JavaScript.
@@ -23,4 +23,18 @@ plugin breuleux/quaint-javascript ::
 plugin breuleux/quaint-earlgrey ::
   Enables embedded [Earl Grey]@@http://breuleux.github.io/earl-grey~.
 
+plugin breuleux/quaint-coffeescript ::
+  Enables embedded [CoffeeScript]@@http://coffeescript.org~.
+
+
+= Syntax highlighting
+
+plugin breuleux/quaint-highlight ::
+  Syntax highlighting for a hundred of languages.
+
+
+= Data formats
+
+plugin breuleux/quaint-yaml ::
+  Format and include YAML files.
 
