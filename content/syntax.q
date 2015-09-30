@@ -100,6 +100,35 @@ normal row.
   | Alice  | Lovelace    | Physicist
   | Harold | Worthington | Banker
 
+Of course, you may think aligning table elements is a little annoying,
+or perhaps your table is stored in a JSON file and you would like to
+make a table automatically for it.
+
+In those cases I recommend you use [`format @@ #format] instead.
+
+
+== Blockquotes
+
+A prefix `[>] will create a blockquote. Consecutive lines will be
+merged.
+
+&&
+  > Hello,
+  > I am a great man
+
+Although, you can use indent, too.
+
+&&
+  > Hello,
+    I am a great man
+
+Multiple blockquote levels can be done, but they require a space
+between the `[>]s.
+
+&&
+  > > Hello!
+  > Bonjour!
+
 
 == Code blocks
 
@@ -443,16 +472,158 @@ variables for use inside curly brackets. See the `[-d] option for the
 
 
 
+= Conditionals
+
+Generate something different depending on the value of a variable or
+of metadata with conditionals:
+
+First there is the `[condition ?? iftrue] construct:
+
+&& {true} ?? yes
+&& {false} ?? yes
+
+You can add a branch to generate when the condition expression is
+false with the `[!!] operator.
+
+&& {true} ?? yes !! no
+&& {false} ?? yes !! no
+
+`[cond !! iffalse] is shorthand for `[cond ?? cond !! iffalse].
+
+&& {true} !! no
+&& {false} !! no
+
+== What can be a conditional
+
+`{true} and `{false} trivially evaluate to `true or `false
+respectively, but they are not super useful.
+
+=== meta variables
+
+Meta variables, when they are not defined, will trigger the false
+branch:
+
+&& meta::x !! no
+
+&& meta :: x = yes
+   meta::x !! no
+
+But be careful: if you want to set metadata to a falsey value, you
+need to use `[:] and not `[=].
+
+&& meta ::
+     a = false
+     b: false
+   * meta::a ?? yes !! no
+   * meta::b ?? yes !! no
+
+That's because the definition for `a generates a Quaint node, that
+is to say, a string of sorts, whereas the latter tries to interpret
+the value as JSON.
+
+=== Variables
+
+As conditionals, you can use variables imported with [`include @@
+#include], with the `[-d] flag of the command line, or set by
+[`setenv @@ api.html#setenv]
+
+&& include json ::
+     {"a": true, "b": false}
+   * {a} ?? yes !! no
+   * {b} ?? yes !! no
+
+
 = Macros
 
 Macros are typically written with the `[::] operator, either as
 `[macro :: body] or `[macro argument :: body].
 
 
+== `css
+
+See here @@ #injectcss
+
+
+== `dump
+
+See `store @@ #store
+
+
+== `html
+
+See here @@ #htmlmacro
+
+
+== `format
+
+`format lets you format JSON (and eventually other formats through
+plugins) as lists, tables and so on.
+
+==== `json
+
+&&
+   format json :: {
+     "Name": "Bob",
+     "Surname": "Smith"
+   }
+
+The JSON is formatted recursively, and Quaint markup inside strings
+will be evaluated:
+
+&&
+   format json :: {
+     "fruits": ["Apple", "__Banana"],
+     "desserts": ["Cake", "Pie"]
+   }
+
+==== `json:table
+
+But wait! There's more! You can tell not only how to parse the data,
+but how to show it. For instance, `json:table will find a way to make
+a table out of what you have:
+
+&&
+   format json:table :: [
+     ["one", "two", "three"],
+     ["un", "deux", "trois"],
+     ["eins", "zwei", "drei"]
+   ]
+
+&&
+   format json:table :: {
+     "Alice":
+       {"age": 14, "job": "student"},
+     "Bob":
+       {"age": 43, "job": "baker"},
+     "Catherine":
+       {"age": 31, "job": "senator"}
+   }
+
+==== Format files
+
+If your data is in a file, you can import it like such:
+
+& format data.json:table ::
+
+
+== `include
+
+`include reads a file and then does something special with it:
+
+* The contents of a __quaint (.q) file are inserted in place.
+* The contents of a __JSON (.json) file are imported as variables in
+  an environment.
+
+&
+  include :: template
+  include :: template.q
+  include :: data.json, other-data.json
+
+
 == `meta
 
-`meta lets you declare metadata: title, author, template, and so on.
-It also lets you print out the data elsewhere in the file.
+`meta lets you declare metadata: title, author, and so on.  It also
+lets you print out the data elsewhere in the file.
 
 6 && meta ::
        title = My Life
@@ -460,18 +631,76 @@ It also lets you print out the data elsewhere in the file.
 
      You are reading meta::title by meta::author.
 
+You may define a field either with `[=] or `[:]. The difference is
+that the former is interpreted with Quaint and the latter as JSON or
+as a plain string. You can see the difference in those examples:
 
-== `toc
+&& meta ::
+     a = __Hello
+     b: __Hello
+   * meta :: a
+   * meta :: b
 
-`toc prints out a table of contents based on the headers declared in
-the markup. It can be used anywhere in the file.
+&& meta ::
+     a = [1, 2, 3]
+     b: [1, 2, 3]
+   * meta :: a
+   * meta :: b
 
-&& toc::
-   = One
-   = Two
-   == Two point one
-   == Two point two
-   = Three
+&& meta ::
+     a = false
+     b: false
+   * meta::a ?? yes !! no
+   * meta::b ?? yes !! no
+
+
+== `plugin
+
+This imports a plugin directly from Quaint. It won't work here in the
+browser, but it will offline.
+
+The syntax works like this:
+
+& plugin name ::
+    option = value
+    ...
+
+For example:
+
+& plugin highlight ::
+    defaultLanguage = python
+
+You will need to install the corresponding packages locally. For
+instance, for the `highlight plugin to work, you need to execute this
+command beforehand:
+
+& npm install quaint-highlight
+
+
+== `plugins
+
+This is shorthand to import plugins with their default options:
+
+& plugins :: highlight javascript
+
+This will import `quaint-highlight and `quaint-javascript with their
+default options.
+
+
+== `scope
+
+`scope creates a new scope, so that all variables declared in the body
+are only visible inside that body.
+
+&& y => 123
+   scope ::
+     x => 456
+     <inside {x} {y}>
+   <outside {x} {y}>
+
+(Note that `scope doesn't work well in the browser because
+limitations, in other words, it'll stop working if you edit the box
+above.)
 
 
 == `store
@@ -486,7 +715,7 @@ have to dump after everything has been stored.
      Bob
      Clara
 
-   store names :: dump!
+   dump :: names
 
    store names ::
      Damian
@@ -502,13 +731,54 @@ template it is using dumps the contents of the sidebar document in the
 sidebar.
 
 
-== `html
+== `template
 
-See here @@ #htmlmacro
+Define the template to use for this file. For example, if you specify
 
-== `css
+& template :: boilerplate
 
-See here @@ #injectcss
+The Quaint compiler will go through the following steps:
+
+# Generate the HTML for the whole file
+# Put the HTML in the variable `body
+# Fetch `boilerplate.q
+# Go to 1 (with the original in the variable `body)
+
+So if boilerplate.q contains:
+
+& #header % header
+  {body}
+  #footer % footer
+
+Then any file that uses it as a template will generate a header div
+above and a footer div below.
+
+The CLI lets you specify a template directory with the `[-t]
+options. You can also customize how files are read.
+
+
+== `toc
+
+`toc prints out a table of contents based on the headers declared in
+the markup. It can be used anywhere in the file.
+
+&& toc::
+   = One
+   = Two
+   == Two point one
+   == Two point two
+   = Three
+
+
+== `when
+
+Alternative notation for the `[??] operator. They both work
+identically.
+
+&& when {true} :: hello
+&& when {false} :: hello
+
+See conditionals @@ #conditionals
 
 
 
