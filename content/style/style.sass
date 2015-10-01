@@ -40,3 +40,28 @@ blockquote
 
 ul.toc code
   font-size: 10pt
+
+
+#comparison .comparison
+  @include row
+  > :first-child .lang
+    background: #aaa
+  > *
+    background-color: white
+    margin: 10px
+    border-radius: 10px
+    width: 50%
+    height: 300px
+    overflow: auto
+    > *
+      padding: 8px
+    pre
+      border-left: 0px
+      font-size: 12pt
+    .lang
+      font-size: 16pt
+      background: #5e2d0c
+      text-align: center
+      font-weight: bold
+      color: white
+      font-family: Alegreya

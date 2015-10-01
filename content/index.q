@@ -6,6 +6,11 @@ meta ::
 
 resources ::
   edit!
+  /resources/owl/owl.carousel.css
+  /resources/owl/owl.theme.css
+  /resources/owl/owl.transitions.css
+  /resources/owl/jquery-1.9.1.min.js
+  /resources/owl/owl.carousel.js
 
 [\title !!! \description] =>
   div %
@@ -35,9 +40,48 @@ div#present-container %
         Plugins can be written in JavaScript in a matter of
         minutes. Macros can be written in a matter of seconds.
 
-div.spacer1 % []
-
 div#main % [
+
+#comparison .owl-carousel .owl-theme %
+  .comparison %
+    div %
+      .lang % HTML
+      &
+        <dl>
+          <dt>Manganese</dt>
+          <dd>The 25th element</dd>
+          <dt>Football</dt>
+          <dd>A <strong>sport</strong></dd>
+        </dl>
+    div %
+      .lang % Quaint
+      &
+        dl %
+          dt % Manganese
+          dd % The 25th element
+          dt % Football
+          dd % A __sport
+  .comparison %
+    div %
+      .lang % Markdown
+      &
+        some markdown
+    div %
+      .lang % Quaint
+      &
+        some quaint
+
+js ::
+  $(document).ready(function() {
+    $("#comparison").owlCarousel({
+      // navigation: true,
+      singleItem: true,
+      transitionStyle: "fade"
+    });
+  });
+
+
+div.spacer1 % []
 
 div#instructions %
   50 &&
