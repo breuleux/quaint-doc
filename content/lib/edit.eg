@@ -21,8 +21,16 @@ qgen{value} =
    vm = {
       create-context{x} = x
       run-in-context{code, x} =
-         global &: x
-         eval{code}
+         restore = {=}
+         var current = x
+         while current !== global:
+            Object.get-own-property-names{current} each k ->
+               restore[k] = global[k]
+               global[k] = current[k]
+            current = Object.get-prototype-of{x}
+         res = eval{code}
+         global &: restore
+         res
    }
    q = quaint{
       qjs{sandbox = global, = vm}
