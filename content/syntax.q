@@ -13,6 +13,9 @@ store sidebar ::
   toc::
 
 
+[@$@ \repo] => {repo} @@ https://github.com/breuleux/{repo}
+
+
 = Basics
 
 Let's start with the basics, so that you can be productive right away!
@@ -57,6 +60,26 @@ it more convenient:
 
 Also note the use of the tilde above. It is required otherwise the
 `[!] is understood to be part of the URL.
+
+
+== Images
+
+The link syntax also serves to display images. Prefix the path with
+`[image:]
+
+&& @@image:assets/quaint-small.png
+
+You can give images a title as well:
+
+&& quaint@@image:assets/quaint-small.png
+
+If you want to control the image's size or other properties you should
+use the [`[%] operator @@ #htmlgeneration]:
+
+&& img %
+     src = assets/quaint-small.png
+     alt = QUAINT
+     height = 50px
 
 
 == Headers
@@ -255,13 +278,14 @@ brackets (`[[]]). They effectively behave like a single word.
 The `[%] operator is used to generate arbitrary HTML nodes, if you
 need to. The full syntax looks like this:
 
-& tag.class1.class2#id %
+& tag#id.class %
     attribute = value
     child1
     child2
     ...
 
-If there is no tag, the default is `div.
+You can specify multiple classes. If there is no tag, the default is
+`div.
 
 && x[sup % 2]
 
@@ -270,6 +294,37 @@ If there is no tag, the default is `div.
    span.err %
      style = color:red
      An __error occurred! (Not really)
+
+You can also write the nodes more compactly by putting every property
+and element inside square brackets.
+
+2 && A a%[href=https://google.com][link] to google!
+
+== Gotchas
+
+Now here's what will __not work. `[%] cannot be used as a suffix
+operator without adding a space (this is so that you can say that 100%
+of crows are black or the glass is 50% full without creating tags,
+which would be confusing). With a space before `[%], it will create a
+tag, but with the space comes the need for grouping brackets. So a
+line break, for example, is `[[br %]]~:
+
+&& First br% line [br %] Second line
+
+Notice how the first `[br%] is just shown normally and does not create
+a `[<br>] tag, whereas `[[br %]] does!
+
+Also, because of Quaint's fixed priorities (all operators are
+right-associative), this will not work as intended (it creates a
+`[<klass>] tag):
+
+&& div.klass%nope
+
+To make it work, put spaces around `[%], or brackets around
+`[span.klass].
+
+&& div.klass % yes
+   [div.klass]%yes
 
 
 == `html macro
@@ -493,12 +548,10 @@ false with the `[!!] operator.
 && {true} !! no
 && {false} !! no
 
-== What can be a conditional
-
 `{true} and `{false} trivially evaluate to `true or `false
 respectively, but they are not super useful.
 
-=== meta variables
+== On metadata
 
 Meta variables, when they are not defined, will trigger the false
 branch:
@@ -521,7 +574,7 @@ That's because the definition for `a generates a Quaint node, that
 is to say, a string of sorts, whereas the latter tries to interpret
 the value as JSON.
 
-=== Variables
+== On variables
 
 As conditionals, you can use variables imported with [`include @@
 #include], with the `[-d] flag of the command line, or set by
@@ -531,6 +584,93 @@ As conditionals, you can use variables imported with [`include @@
      {"a": true, "b": false}
    * {a} ?? yes !! no
    * {b} ?? yes !! no
+
+
+= Loops
+
+The `each macro can be used to generate loops over various data. The
+syntax is:
+
+& each data variable ::
+    body
+
+  each data var1 var2 ... ::
+    body
+
+There are many kinds of data you can iterate on:
+
+== On lists
+
+&& groceries =>
+     * bread
+     * milk
+     * bananas
+   each {groceries} food ::
+     # I need {food}
+
+== On tables
+
+Depending on whether it has a row of headers, a table is interpreted
+either as a list of objects or as a list of lists:
+
+With a header, it is a list of objects:
+
+&& people =>
+     + Name   + Age + Job
+     | Alice  | 21  | baker
+     | Bob    | 42  | banker
+     | Carmen | 33  | fraud
+   each {people} person ::
+     * {person.Name} is {person.Age}
+       years old and is a {person.Job}
+
+Without, you have to declare a variable for each column, just like
+this:
+
+&& people =>
+     | Alice  | 21 | baker
+     | Bob    | 42 | banker
+     | Carmen | 33 | fraud
+   each {people} name age job ::
+     * {name} is {age} years old
+       and they are a {job}
+
+
+== On documents
+
+&& store names :: Alice
+   store names :: Bob
+   each dump::names name ::
+     * Hello, {name}
+
+== On metadata
+
+&& meta ::
+     tags: ["Cool", "Wow"]
+   each meta::tags tag ::
+     * Tagged: {tag}!
+
+== On JSON
+
+&&
+   include json :: {
+     "names": ["Alice", "Bob"],
+     "people": {
+       "Alice": "baker",
+       "Bob": "banker"
+     }
+   }
+   each {names} name ::
+     * Hello, {name}!
+   each {people} name job ::
+     * {name} is a {job}
+
+This works just as well if you [`include @@ #include] external data,
+of course. Also, check out the @$@quaint-yaml plugin if you wish to
+include and iterate over YAML.
+
+
+
 
 
 = Macros
@@ -547,6 +687,11 @@ See here @@ #injectcss
 == `dump
 
 See `store @@ #store
+
+
+== `each
+
+See Loops @@ #loops
 
 
 == `html
@@ -618,6 +763,14 @@ If your data is in a file, you can import it like such:
   include :: template
   include :: template.q
   include :: data.json, other-data.json
+
+Also consider the @$@quaint-yaml plugin if you wish to include over
+YAML:
+
+&
+  plugins :: yaml
+  include :: data.yaml
+
 
 
 == `meta
@@ -692,15 +845,12 @@ default options.
 `scope creates a new scope, so that all variables declared in the body
 are only visible inside that body.
 
-&& y => 123
+&& x => x-out
+   y => y-out
    scope ::
-     x => 456
-     <inside {x} {y}>
-   <outside {x} {y}>
-
-(Note that `scope doesn't work well in the browser because
-limitations, in other words, it'll stop working if you edit the box
-above.)
+     x => _x-in
+     | __inside | {x} | {y}
+   | __outside | {x} | {y}
 
 
 == `store
@@ -712,13 +862,13 @@ instance), and then dump that document somewhere convenient. You don't
 have to dump after everything has been stored.
 
 && store names ::
-     Bob
-     Clara
+     # Bob
+     # Clara
 
    dump :: names
 
    store names ::
-     Damian
+     # Damian
 
 One use case of `store is in Quaint's very documentation. The code for
 this page declares:
@@ -729,6 +879,21 @@ this page declares:
 That is to say, "put the table of contents in the sidebar". Then, the
 template it is using dumps the contents of the sidebar document in the
 sidebar.
+
+You can also use `store and `dump along with `each.
+
+&& store names ::
+     Bob
+     Clara
+
+   each [dump :: names] name ::
+     # {name}
+
+   store names ::
+     Damian
+
+Notice, however, that Bob and Clara are part of the same element as far
+as `each is concerned.
 
 
 == `template
