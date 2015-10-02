@@ -44,6 +44,9 @@ ul.toc code
 
 #comparison .comparison
   @include row
+  width: 1000px
+  margin: auto
+  line-height: 140%
   > :first-child .lang
     background: #aaa
   > *
@@ -51,13 +54,16 @@ ul.toc code
     margin: 10px
     border-radius: 10px
     width: 50%
-    height: 300px
+    height: 380px
     overflow: auto
     > *
       padding: 8px
     pre
       border-left: 0px
       font-size: 12pt
+      word-wrap: break-word
+      white-space: pre-wrap
+      
     .lang
       font-size: 16pt
       background: #5e2d0c

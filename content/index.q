@@ -40,14 +40,11 @@ div#present-container %
         Plugins can be written in JavaScript in a matter of
         minutes. Macros can be written in a matter of seconds.
 
-div#main % [
-
-#comparison .owl-carousel .owl-theme %
+htmlVsQuaint =>
   .comparison %
     div %
       .lang % HTML
-      &
-        <dl>
+      & <dl>
           <dt>Manganese</dt>
           <dd>The 25th element</dd>
           <dt>Football</dt>
@@ -55,21 +52,89 @@ div#main % [
         </dl>
     div %
       .lang % Quaint
-      &
-        dl %
+      & dl#definitions.xyz %
           dt % Manganese
           dd % The 25th element
           dt % Football
           dd % A __sport
+
+htmlVsQuaint2 =>
+  .comparison %
+    div %
+      .lang % HTML
+      & <div id="page">
+          <div class="post">
+            <div class="author">
+              Albert Einstein
+            </div>
+            <div class="postbody">
+              I fart like <span class="yellow">
+              thunder</span>.
+            </div>
+          </div>
+        </div>
+    div %
+      .lang % Quaint
+      & #page
+          .post
+            .author %
+              Albert Einstein
+            .postbody %
+              I fart like [span.yellow % thunder].
+
+mdVsQuaint =>
   .comparison %
     div %
       .lang % Markdown
       &
-        some markdown
+        Check out these packages!
+        * [quaint][0]
+        * [quaint-javascript][1]
+        * [quaint-earlgrey][2]
+        * [quaint-highlight][3]
+
+        [0](//npmjs.com/package/quaint)
+        [1](//npmjs.com/package/quaint-javascript)
+        [2](//npmjs.com/package/quaint-earlgrey)
+        [3](//npmjs.com/package/quaint-highlight)
     div %
       .lang % Quaint
       &
-        some quaint
+        [npm: \name] =>
+          {name} @@
+             //npmjs.com/package/{name}
+
+        I don't like to repeat myself!
+        * npm: quaint
+        * npm: quaint-javascript
+        * npm: quaint-earlgrey
+        * npm: quaint-highlight
+
+mdVsQuaint2 =>
+  .comparison %
+    div %
+      .lang % Markdown
+      &
+        There are many wild animals in
+        [Canada](//wikipedia.org/wiki/Canada).
+        They include
+        [bears](//wikipedia.org/wiki/Bear),
+        [moose](//wikipedia.org/wiki/Moose) and
+        [beavers](//wikipedia.org/wiki/Beaver).
+    div %
+      .lang % Quaint
+      &
+        [? \name] =>
+          {name} @@ //wikipedia.org/wiki/{name}
+
+        There are many wild animals in ?Canada. They include ?bears, ?moose and ?beavers.
+
+
+#comparison .owl-carousel .owl-theme %
+  {mdVsQuaint2}
+  {mdVsQuaint}
+  {htmlVsQuaint2}
+  {htmlVsQuaint}
 
 js ::
   $(document).ready(function() {
@@ -79,6 +144,9 @@ js ::
       transitionStyle: "fade"
     });
   });
+
+
+div#main % [
 
 
 div.spacer1 % []
