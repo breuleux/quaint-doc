@@ -11,8 +11,8 @@ System.config({
     "earlgrey-runtime": "npm:earlgrey-runtime@0.0.11",
     "jquery": "github:components/jquery@2.1.4",
     "lodash.throttle": "npm:lodash.throttle@3.0.4",
-    "quaint": "npm:quaint@0.0.8",
-    "quaint-highlight": "npm:quaint-highlight@0.0.4",
+    "quaint": "npm:quaint@0.0.9",
+    "quaint-highlight": "npm:quaint-highlight@0.0.5",
     "quaint-javascript": "npm:quaint-javascript@0.0.4",
     "vm": "github:jspm/nodelibs-vm@0.1.0",
     "github:jspm/nodelibs-assert@0.1.0": {
@@ -74,6 +74,9 @@ System.config({
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "stable": "npm:stable@0.1.5"
     },
+    "npm:array-union@1.0.1": {
+      "array-uniq": "npm:array-uniq@1.0.2"
+    },
     "npm:asn1.js@2.2.1": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "bn.js": "npm:bn.js@2.2.0",
@@ -87,6 +90,10 @@ System.config({
     },
     "npm:ast-traverse@0.1.1": {
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
+    },
+    "npm:brace-expansion@1.1.1": {
+      "balanced-match": "npm:balanced-match@0.2.0",
+      "concat-map": "npm:concat-map@0.0.1"
     },
     "npm:browserify-aes@1.0.5": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
@@ -283,6 +290,10 @@ System.config({
       "create-hash": "npm:create-hash@1.1.2",
       "crypto": "github:jspm/nodelibs-crypto@0.1.0"
     },
+    "npm:format-json@1.0.3": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
     "npm:glob@4.2.2": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "events": "github:jspm/nodelibs-events@0.1.1",
@@ -294,6 +305,27 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:glob@5.0.15": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0",
+      "events": "github:jspm/nodelibs-events@0.1.1",
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "inflight": "npm:inflight@1.0.4",
+      "inherits": "npm:inherits@2.0.1",
+      "minimatch": "npm:minimatch@3.0.0",
+      "once": "npm:once@1.3.2",
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "path-is-absolute": "npm:path-is-absolute@1.0.0",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:globby@3.0.1": {
+      "array-union": "npm:array-union@1.0.1",
+      "arrify": "npm:arrify@1.0.0",
+      "glob": "npm:glob@5.0.15",
+      "object-assign": "npm:object-assign@4.0.1",
+      "pify": "npm:pify@2.2.0",
+      "pinkie-promise": "npm:pinkie-promise@1.0.0"
     },
     "npm:graceful-fs@3.0.8": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
@@ -361,6 +393,10 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.1",
       "sigmund": "npm:sigmund@1.0.1"
     },
+    "npm:minimatch@3.0.0": {
+      "brace-expansion": "npm:brace-expansion@1.1.1",
+      "path": "github:jspm/nodelibs-path@0.1.0"
+    },
     "npm:mkdirp@0.5.1": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "minimist": "npm:minimist@0.0.8",
@@ -393,6 +429,9 @@ System.config({
     "npm:path-browserify@0.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
+    "npm:path-is-absolute@1.0.0": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
     "npm:pbkdf2@3.0.4": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "child_process": "github:jspm/nodelibs-child_process@0.1.0",
@@ -401,6 +440,9 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
+    },
+    "npm:pinkie-promise@1.0.0": {
+      "pinkie": "npm:pinkie@1.0.0"
     },
     "npm:public-encrypt@2.0.1": {
       "bn.js": "npm:bn.js@2.2.0",
@@ -417,20 +459,23 @@ System.config({
     "npm:q@1.1.2": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:quaint-highlight@0.0.4": {
+    "npm:quaint-highlight@0.0.5": {
       "earlgrey-runtime": "npm:earlgrey-runtime@0.0.11",
       "highlight.js": "npm:highlight.js@8.8.0",
-      "quaint": "npm:quaint@0.0.8"
+      "quaint": "npm:quaint@0.0.9"
     },
     "npm:quaint-javascript@0.0.4": {
       "earlgrey-runtime": "npm:earlgrey-runtime@0.0.11",
       "vm": "github:jspm/nodelibs-vm@0.1.0"
     },
-    "npm:quaint@0.0.8": {
+    "npm:quaint@0.0.9": {
       "child_process": "github:jspm/nodelibs-child_process@0.1.0",
       "earlgrey-runtime": "npm:earlgrey-runtime@0.0.11",
+      "format-json": "npm:format-json@1.0.3",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "globby": "npm:globby@3.0.1",
       "kaiser": "npm:kaiser@0.0.2",
+      "mkdirp": "npm:mkdirp@0.5.1",
       "module": "github:jspm/nodelibs-module@0.1.0",
       "opg": "npm:opg@0.0.3",
       "path": "github:jspm/nodelibs-path@0.1.0",
