@@ -52,7 +52,7 @@ htmlVsQuaint =>
         </dl>
     div %
       .lang % Quaint
-      & dl#definitions.xyz %
+      & dl %
           dt % Manganese
           dd % The 25th element
           dt % Football
@@ -140,8 +140,11 @@ js ::
   $(document).ready(function() {
     $("#comparison").owlCarousel({
       // navigation: true,
+      autoPlay: 8000,
+      stopOnHover: true,
+      mouseDrag: false,
       singleItem: true,
-      transitionStyle: "fade"
+      transitionStyle: "goDown"
     });
   });
 
