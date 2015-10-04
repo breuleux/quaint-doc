@@ -684,6 +684,14 @@ Macros are typically written with the `[::] operator, either as
 See here @@ #injectcss
 
 
+== `doctype
+
+Generate a doctype tag for a document:
+
+& doctype :: html
+  ==> <!DOCTYPE html>
+
+
 == `dump
 
 See `store @@ #store
