@@ -29,6 +29,8 @@ Here's the help for the `quaint command:
   Usage: quaint <file ...> [options]
   
   Options:
+    -c, --config    Path to a configuration file with option values (must be JSON)
+                                                        [default: "./quaint.json"]
     -d, --data      JSON string or file(s) defining field:value pairs to be made
                     available inside markup (as {field}):
                     * key:value
@@ -47,6 +49,8 @@ Here's the help for the `quaint command:
     -s, --stdout    Print to standard out               [boolean] [default: false]
     -t, --template  Quaint file to use as template, or template directory
     -v, --verbose   Print information about the operations performed     [boolean]
+    --save-meta     Save meta data in a file (./meta.json if the file is not
+                    specified)                                    [default: false]
 
 
 = Templates
@@ -60,7 +64,7 @@ and whatnot. You might actually want to save this one!
 __boilerplate.q
 
 &
-  raw % <!DOCTYPE html>
+  doctype :: html
   html %
     head %
       meta %
@@ -143,12 +147,20 @@ You will need to include a stylesheet as well. They are available
 [here @@ https://github.com/isagalaev/highlight.js/tree/master/src/styles].
 
 You may of course use as many plugins as you want, just use the `[-p]
-option multiple times or separate each plugin with a comma. For instance:
+option multiple times. For instance:
 
 bash &
   quaint -p highlight -p javascript post.q
-  quaint -p earlgrey,highlight post.q
 
+If plugins can take options, you can provide them on the command line
+by writing them out as JSON next to the plugin name, like this:
+
+bash &
+  quaint -p 'highlight{"defaultLanguage: "python"}' post.q
+
+Note that you can specify and configure plugins inside a Quaint file
+with the [`plugin @@ syntax.html#plugin] macro, although that will
+only work on a per-file basis.
 
 
 = Data injection
@@ -199,7 +211,38 @@ braces. Use this tip wisely.
 
 
 
+= Configuration file
 
+If there is a `quaint.json file in the current directory, its contents
+will be used to fill in the options for generation. You can also
+specify a different configuration file with the `[-c] option.
 
+Here is a sample `quaint.json file:
 
+json &
+  {
+      "sources": "src",
+      "output": "out",
+      "template": "templates",
+      "data": {
+          "name": "Roland",
+          "surname": "Worthington"
+      },
+      "plugins": {
+          "javascript": null,
+          "highlight": {"defaultLanguage": "python"}
+      }
+  }
+
+Then, executing `quaint with no arguments, or `[quaint -c
+quaint.json], will be equivalent to running it with the following
+options:
+
+& quaint \
+    -o out \
+    -t templates \
+    -d'{"name": ...}' \
+    -p javascript \
+    -p 'highlight{"defaultLanguage": "python"}' \
+    src
 
