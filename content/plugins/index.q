@@ -33,7 +33,10 @@ plugin breuleux/quaint-highlight ::
   Syntax highlighting for a hundred of languages.
 
 
-= Data formats
+= Others
+
+plugin breuleux/quaint-sass ::
+  Enables embedded SASS.
 
 plugin breuleux/quaint-yaml ::
   Format and include YAML files.
