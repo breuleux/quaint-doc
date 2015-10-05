@@ -88,27 +88,26 @@ mdVsQuaint =>
       .lang % Markdown
       &
         Check out these packages!
-        * [quaint][0]
-        * [quaint-javascript][1]
-        * [quaint-earlgrey][2]
-        * [quaint-highlight][3]
+        * [marked][0]
+        * [earlgrey][1]
+        * [gulp][2]
+        * [express][3]
 
-        [0](//npmjs.com/package/quaint)
-        [1](//npmjs.com/package/quaint-javascript)
-        [2](//npmjs.com/package/quaint-earlgrey)
-        [3](//npmjs.com/package/quaint-highlight)
+        [0](//npmjs.com/package/markdown)
+        [1](//npmjs.com/package/earlgrey)
+        [2](//npmjs.com/package/gulp)
+        [3](//npmjs.com/package/express)
     div %
       .lang % Quaint
       &
         [npm: \name] =>
-          {name} @@
-             //npmjs.com/package/{name}
+          {name} @@ //npmjs.com/package/{name}
 
         I don't like to repeat myself!
         * npm: quaint
-        * npm: quaint-javascript
-        * npm: quaint-earlgrey
-        * npm: quaint-highlight
+        * npm: earlgrey
+        * npm: gulp
+        * npm: express
 
 mdVsQuaint2 =>
   .comparison %
@@ -152,20 +151,14 @@ js ::
 div#main % [
 
 
-div.spacer1 % []
-
 div#instructions %
   50 &&
     ;; Edit me!!!
     
-
-
     = What is it?
     
     __Quaint is a _[markup language] that you can use to write documents. It is similar to `Markdown, but it is [strong % more powerful] and __[more extensible].
     
-
-
     = Install
     
     To install __Quaint globally:
@@ -176,18 +169,13 @@ div#instructions %
     
     ;\)
 
-
-
     = Learn
     
-    * Learn the syntax! @@
-        /quaint/syntax.html
-    * JavaScript API @@ /quaint/api.html
+    * Learn the syntax! @@ syntax.html
+    * JavaScript API @@ api.html
     * Check out the plugins @@
-        /quaint/plugins/index.html
+        plugins/index.html
     
-
-
     div %
       style =
         text-align:center;
