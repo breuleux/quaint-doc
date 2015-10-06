@@ -11,7 +11,7 @@ System.config({
     "earlgrey-runtime": "npm:earlgrey-runtime@0.0.11",
     "jquery": "github:components/jquery@2.1.4",
     "lodash.throttle": "npm:lodash.throttle@3.0.4",
-    "quaint": "npm:quaint@0.0.10",
+    "quaint": "npm:quaint@0.0.11",
     "quaint-highlight": "npm:quaint-highlight@0.0.5",
     "quaint-javascript": "npm:quaint-javascript@0.0.4",
     "vm": "github:jspm/nodelibs-vm@0.1.0",
@@ -199,7 +199,7 @@ System.config({
     "npm:core-util-is@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
     },
-    "npm:create-ecdh@2.0.1": {
+    "npm:create-ecdh@2.0.2": {
       "bn.js": "npm:bn.js@2.2.0",
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
@@ -224,7 +224,7 @@ System.config({
     "npm:crypto-browserify@3.10.0": {
       "browserify-cipher": "npm:browserify-cipher@1.0.0",
       "browserify-sign": "npm:browserify-sign@3.0.8",
-      "create-ecdh": "npm:create-ecdh@2.0.1",
+      "create-ecdh": "npm:create-ecdh@2.0.2",
       "create-hash": "npm:create-hash@1.1.2",
       "create-hmac": "npm:create-hmac@1.1.4",
       "diffie-hellman": "npm:diffie-hellman@3.0.2",
@@ -462,13 +462,13 @@ System.config({
     "npm:quaint-highlight@0.0.5": {
       "earlgrey-runtime": "npm:earlgrey-runtime@0.0.11",
       "highlight.js": "npm:highlight.js@8.8.0",
-      "quaint": "npm:quaint@0.0.10"
+      "quaint": "npm:quaint@0.0.11"
     },
     "npm:quaint-javascript@0.0.4": {
       "earlgrey-runtime": "npm:earlgrey-runtime@0.0.11",
       "vm": "github:jspm/nodelibs-vm@0.1.0"
     },
-    "npm:quaint@0.0.10": {
+    "npm:quaint@0.0.11": {
       "child_process": "github:jspm/nodelibs-child_process@0.1.0",
       "earlgrey-runtime": "npm:earlgrey-runtime@0.0.11",
       "format-json": "npm:format-json@1.0.3",
