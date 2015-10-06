@@ -954,10 +954,21 @@ identically.
 See conditionals @@ #conditionals
 
 
+= Error reporting
 
+If an error occurs in a Quaint document, the error will be inlined
+inside a span with class `error` (which you can style yourself, for
+example I suggest using bold red).
 
+&& There is an {error} here.
 
+If you want more information about an error, a stack trace for
+example, you can dump the `errors sub-document. Each error will
+contain a link to its corresponding stack trace.
 
+4 && An error [format json :: blah] and another {1 +}, woe is me!
+
+     dump::errors
 
 
 
