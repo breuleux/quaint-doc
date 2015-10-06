@@ -167,14 +167,16 @@ div#instructions %
     
     This will install the `quaint command on your system. Then you can convert quaint markup to HTML! See usage@@usage.html.
     
-    ;\)
-
     = Learn
     
     * Learn the syntax! @@ syntax.html
     * JavaScript API @@ api.html
     * Check out the plugins @@
         plugins/index.html
+
+    = Contribute
+
+    * Write plugins! @@ plugins/write.html
     
     div %
       style =

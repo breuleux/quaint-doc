@@ -14,6 +14,8 @@ meta ::
 The following plugins are currently available. More will follow!
 Follow the links for more information.
 
+__[Contributors]: [instructions on how to write a plugin]@@@plugins/write
+
 
 = Programming languages
 
