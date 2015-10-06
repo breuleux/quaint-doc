@@ -376,9 +376,9 @@ method deferred(function) ::
   will still work, because __[Quaint may execute a deferred multiple
   times]. Essentially, Quaint detects what documents are consulted by
   a deferred, and it executes it again if these change, until an
-  equilibrium is achieved. It is therefore possible (but unlikely) to
-  get stuck in a neverending cycle, if a deferred undoes what another
-  does.
+  equilibrium is achieved, or a maximum number of iterations is
+  reached (currently that maximum is 10, so buggy or ill-behaved
+  deferred can only do limited damage).
 
 
 method eval(expr, env) ::
@@ -392,6 +392,8 @@ method eval(expr, env) ::
     q.plug(quaint-javascript);
     q.eval("2 + 2") // 4
     q.eval("a + b", {"a": 1, "b": 8}) // 9
+
+  Environment variables may also be set with [`setenv @@ #setenv].
 
 
 method fork() ::
@@ -429,11 +431,18 @@ method into(document, value) ::
   the error into the `errors document, and so on.
 
   The result of this operation will not show in the output, unless a
-  different operation decides to display the stashed value.
+  different operation decides to display the stashed value (for
+  example, headers stash information into `sections, and
+  [`toc @@ syntax.html#toc] extracts it to display a table of contents).
 
-  Also, note that even though the return value of `into is not
-  displayed, it has to be present in the returned tree in order to be
-  effective.
+  Also, note that `into is __declarative, it doesn't actually have
+  side-effects when called. Therefore, even though the return value of
+  `into is not displayed, a plugin needs to return it, or embed it in
+  the return value, in order for it to do anything.
+
+  Extracting values stashed in sub-documents with `into is typically
+  done with [`deferred @@ #deferred]. This ensures the extraction
+  operates after all the stashing is done.
 
 
 method plug(plugin, ...) ::
@@ -443,11 +452,11 @@ method plug(plugin, ...) ::
 
 method redefer(node, function) ::
 
-  If a macro or rule wishes to execute a deferred to inspect its
-  contents, for instance to implement a conditional, `redefer will
-  take a generated result (which may be an `ENode, a string, a
-  `Deferred, and so on) and a function, and it will execute the
-  function on the node either immediately (if the node is not a
+  If a macro or rule wishes to execute a [`deferred @@ #deferred] to
+  inspect its contents, for instance to implement a conditional,
+  `redefer will take a generated result (which may be an `ENode, a
+  string, a `Deferred, and so on) and a function, and it will execute
+  the function on the node either immediately (if the node is not a
   `Deferred) or when the `Deferred is executed.
 
   For example:
@@ -468,6 +477,11 @@ method redefer(node, function) ::
   Thanks to `redefer we can ensure that the condition is computed
   after the meta-information is set. In fact, `redefer is more or less
   required for it to work.
+
+  Just like `deferred, __[`redefer may be executed multiple
+  times]. For instance, it is possible that as a result of the order
+  in which some operations are done, the value of a condition changes,
+  and then the `if will be recomputed.
 
 
 method registerDocuments(documents) ::
