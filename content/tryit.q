@@ -7,6 +7,7 @@ meta ::
 resources ::
   toc! edit!
   highlight.pack.js
+  tryit.css
 
 
 div#tryit %
