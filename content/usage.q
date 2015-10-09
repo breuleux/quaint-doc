@@ -12,13 +12,13 @@ store sidebar ::
 
 = Install
 
-Very simple. Assuming you have `npm installed, write the command:
+Assuming you have `npm installed:
 
 bash & npm install quaint -g
 
 This will install a `quaint command globally. It will be your main
-tool unless you want to use the API@@@api directly or write your own
-plugins.
+tool unless you want to use the API@@@api directly or [write your own
+plugins]@@@plugins/write.
 
 
 = Usage
@@ -71,7 +71,7 @@ __boilerplate.q
          http-equiv = Content-type
          content = text/html
          charset = UTF-8
-      title % meta :: title
+      title % [meta :: title] !! Untitled
       link %
          rel = stylesheet
          type = text/css
@@ -116,7 +116,7 @@ crash).
 
 = Plugins
 
-Say you want to highlight some JavaScript in a post:
+Say you want to highlight some Javascript in a post:
 
 __post.q
 
@@ -207,7 +207,7 @@ bash &
 If you use the `quaint-javascript plugin, all of the JSON contents
 become top-level variables. This means that you could, for instance,
 calculate Alice's age from her birthdate as an expression inside curly
-braces. Use this tip wisely.
+braces.
 
 
 
@@ -229,7 +229,7 @@ json &
           "surname": "Worthington"
       },
       "plugins": {
-          "javascript": null,
+          "javascript": {},
           "highlight": {"defaultLanguage": "python"}
       }
   }
@@ -245,4 +245,7 @@ options:
     -p javascript \
     -p 'highlight{"defaultLanguage": "python"}' \
     src
+
+Options in the configuration file can be supplemented (or overriden)
+with command line options.
 
