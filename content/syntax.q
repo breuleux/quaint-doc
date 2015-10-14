@@ -957,8 +957,9 @@ See conditionals @@ #conditionals
 = Error reporting
 
 If an error occurs in a Quaint document, the error will be inlined
-inside a span with class `error` (which you can style yourself, for
-example I suggest using bold red).
+inside a span with class `error (which you can style yourself, for
+example I suggest using bold red, so you don't accidentally skim over
+your outrageous blunders).
 
 && There is an {error} here.
 
