@@ -160,3 +160,16 @@ bash &
   quaint -p wikilinks post.q
 
 
+
+= Plugin list
+
+For convenience there is a [list of plugins]@@@plugins/index on
+Quaint's website.
+
+The source for that page is located here@@{src}. If you write a new
+plugin, please add it to the list at an appropriate place (you can
+create a new section if needed) and make a pull request :\)
+
+src => https://github.com/breuleux/quaint-doc/blob/master/content/plugins/index.q
+
+

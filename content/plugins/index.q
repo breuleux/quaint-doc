@@ -12,12 +12,6 @@ meta ::
       {description}
 
 
-The following plugins are currently available. More will follow!
-Follow the links for more information.
-
-__[Contributors]: [instructions on how to write a plugin]@@@plugins/write
-
-
 = Programming languages
 
 qplugin breuleux/quaint-javascript ::
@@ -44,3 +38,8 @@ qplugin breuleux/quaint-sass ::
 qplugin breuleux/quaint-yaml ::
   Format and include YAML files.
 
+
+= Contributors
+
+Please consult the documentation on
+__[how to write a plugin @@@ plugins/write].
