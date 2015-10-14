@@ -4,7 +4,8 @@ template :: default
 meta ::
   title = Plugins
 
-[plugin \user/\name :: \description] =>
+
+[qplugin \user/\name :: \description] =>
   div.plugin %
     div.plugin-name % __ {name}@@http://github.com/{user}/{name}
     div.plugin-description %
@@ -19,27 +20,27 @@ __[Contributors]: [instructions on how to write a plugin]@@@plugins/write
 
 = Programming languages
 
-plugin breuleux/quaint-javascript ::
+qplugin breuleux/quaint-javascript ::
   Enables embedded JavaScript.
 
-plugin breuleux/quaint-earlgrey ::
+qplugin breuleux/quaint-earlgrey ::
   Enables embedded [Earl Grey]@@http://breuleux.github.io/earl-grey~.
 
-plugin breuleux/quaint-coffeescript ::
+qplugin breuleux/quaint-coffeescript ::
   Enables embedded [CoffeeScript]@@http://coffeescript.org~.
 
 
 = Syntax highlighting
 
-plugin breuleux/quaint-highlight ::
+qplugin breuleux/quaint-highlight ::
   Syntax highlighting for a hundred of languages.
 
 
 = Others
 
-plugin breuleux/quaint-sass ::
+qplugin breuleux/quaint-sass ::
   Enables embedded SASS.
 
-plugin breuleux/quaint-yaml ::
+qplugin breuleux/quaint-yaml ::
   Format and include YAML files.
 
