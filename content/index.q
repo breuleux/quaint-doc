@@ -87,7 +87,7 @@ mdVsQuaint =>
     div %
       .lang % Markdown
       &
-        Check out these packages!
+        Check out **these** packages!
         * [marked][0]
         * [earlgrey][1]
         * [gulp][2]
@@ -103,7 +103,7 @@ mdVsQuaint =>
         [npm: \name] =>
           {name} @@ //npmjs.com/package/{name}
 
-        I don't like to repeat myself!
+        Check out __these packages!
         * npm: quaint
         * npm: earlgrey
         * npm: gulp
@@ -133,7 +133,7 @@ mdVsQuaint2 =>
   {mdVsQuaint2}
   {mdVsQuaint}
   {htmlVsQuaint2}
-  {htmlVsQuaint}
+;;  {htmlVsQuaint}
 
 js ::
   $(document).ready(function() {

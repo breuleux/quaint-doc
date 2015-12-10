@@ -130,6 +130,17 @@ make a table automatically for it.
 In those cases I recommend you use [`format @@ #format] instead.
 
 
+== Definitions
+
+The `:=` operator creates definitions.
+
+&&
+  quaint :=
+    A cool markup language.
+  xml :=
+    Not cool at all.
+
+
 == Blockquotes
 
 A prefix `[>] will create a blockquote. Consecutive lines will be
@@ -692,6 +703,28 @@ Generate a doctype tag for a document:
   ==> <!DOCTYPE html>
 
 
+== `data
+
+`data reads a data file and returns it (usually so you can put it in a
+variable)
+
+For example:
+
+&
+  movies => data :: movies.json
+
+  = List of movies!
+  each {movies} movie :: * {movie.title}
+
+Also consider the @$@quaint-yaml plugin if you wish to fetch YAML
+data:
+
+&
+  plugins :: yaml
+  movies => data :: movies.yaml
+  ...
+
+
 == `dump
 
 See `store @@ #store
@@ -848,6 +881,20 @@ This will import `quaint-highlight and `quaint-javascript with their
 default options.
 
 
+== `resources
+
+The `resources macro lets you include files in your output. By
+default, the resources will be inserted in the `head tag.
+
+& resources ::
+    style.css
+    my-script.js
+
+Depending on command-line options, the resources may be copied over to
+a resource directory and linked to, or inlined directly in the output
+(at the appropriate location). The default is to copy and link.
+
+
 == `scope
 
 `scope creates a new scope, so that all variables declared in the body
@@ -908,16 +955,16 @@ as `each is concerned.
 
 Define the template to use for this file. For example, if you specify
 
-& template :: boilerplate
+& template :: mytemplate
 
 The Quaint compiler will go through the following steps:
 
 # Generate the HTML for the whole file
 # Put the HTML in the variable `body
-# Fetch `boilerplate.q
+# Fetch `mytemplate.q
 # Go to 1 (with the original in the variable `body)
 
-So if boilerplate.q contains:
+So if mytemplate.q contains:
 
 & #header % header
   {body}
@@ -928,6 +975,15 @@ above and a footer div below.
 
 The CLI lets you specify a template directory with the `[-t]
 options. You can also customize how files are read.
+
+Two templates are defined by default and can be used directly:
+
+* `[@none] is the identity template.
+* `[@minimal] is standard boilerplate.
+  (doctype and `html/head/body tags with a `[meta charset=utf8])
+
+Plugins can define more templates that use the `[@] syntax. Check
+their documentation.
 
 
 == `toc
@@ -971,87 +1027,3 @@ contain a link to its corresponding stack trace.
 
      dump::errors
 
-
-
-
-
-
-
-;;    * 
-
-
-
-;; = List of operators
-
- In what follows, `[\x] and other escaped words are placeholders for
- variables.
-
- + Name             + Pattern
- | Emphasis         | `[_ \x]
- | Strong emphasis  | `[__ \x]
- | Link             | `[\maybe\label @@ \maybe\url]
- | Code             | `[\maybe\language ` \code]
- | Code block       | `[\maybe\language & \code]
- | List             | `[* \x]
- | Ordered list     | `[# \x]
- | Table            | `[+ \x] and `[|\x]
- | Group            | `[[ \x]]
- | Eval             | `[{ \x}]
- | Header 1         | `[= \x]
- | Header 2         | `[== \x]
- | Header 3         | `[=== \x]
- | Header 4         | `[==== \x]
- | Header 5         | `[===== \x]
- | Header 6         | `[====== \x]
-
-
-;; = List of functions
-
- + Name   + Purpose
- | meta   | Define metadata
- | store  | Store 
- | toc    | Table of contents
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-;; == Basic troubleshooting
-
-;; Here are some quick and dirty tips to keep in mind if you ever run
-   into issues or mysteries:
-
-;; div#interactive-spacing %
-  interactive ::
-    # __Escape an operator character with a __backslash:
-      * \_ not emphasized
-      * this is \@\@ not a link
-    # You will need to __[escape brackets] sometimes
-      * \[this is not a group\]
-      * :\)
-    # The __tilde (`[~]) is a __non-printing space
-      * he~llo, you are a~_ma~zing!
-    # Square brackets (`[[]]) __[group things together]
-      * This is [[fool proof]@@[#basictroubleshooting]]
-
-;; * `[[]] __[will not close] if the line with the closing bracket is
-  indented further than the one with the opening bracket. For
-  instance:
-  &
-    this [will not close
-        <-- because of the indent]
-
-    but this [will
-        close
-    without any issues]

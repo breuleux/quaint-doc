@@ -12,6 +12,21 @@ meta ::
       {description}
 
 
+= Data formats
+
+qplugin breuleux/quaint-csv ::
+  Format and include CSV files.
+
+qplugin breuleux/quaint-yaml ::
+  Format and include YAML files.
+
+
+= Syntax highlighting
+
+qplugin breuleux/quaint-highlight ::
+  Syntax highlighting for a hundred of languages.
+
+
 = Programming languages
 
 qplugin breuleux/quaint-javascript ::
@@ -24,19 +39,18 @@ qplugin breuleux/quaint-coffeescript ::
   Enables embedded [CoffeeScript]@@http://coffeescript.org~.
 
 
-= Syntax highlighting
-
-qplugin breuleux/quaint-highlight ::
-  Syntax highlighting for a hundred of languages.
-
-
 = Others
 
-qplugin breuleux/quaint-sass ::
-  Enables embedded SASS.
+qplugin breuleux/quaint-bootstrap ::
+  Includes [bootstrap]@@http://getbootstrap.com/ CSS/JS files and
+  defines many components to use bootstrap's features.
 
-qplugin breuleux/quaint-yaml ::
-  Format and include YAML files.
+qplugin breuleux/quaint-mathjax ::
+  Includes [mathjax]@@https://www.mathjax.org/, which lets you write
+  math with LaTeX syntax.
+
+qplugin breuleux/quaint-sass ::
+  Enables embedded [SASS]@@http://sass-lang.com/.
 
 
 = Contributors
