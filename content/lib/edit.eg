@@ -36,7 +36,8 @@ qgen{value} =
       qjs{sandbox = global, = vm}
       qhl{hljs = hljs}
    }
-   q.translate{value, .html} ;;, paragraph = true}
+   ;; q.translate{value, .html} ;;, paragraph = true}
+   q.toHTML{value}
 
 
 class Updater:
