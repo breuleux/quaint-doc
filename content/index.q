@@ -75,8 +75,8 @@ htmlVsQuaint2 =>
         </div>
     div %
       .lang % Quaint
-      & #page
-          .post
+      & #page %
+          .post %
             .author %
               Albert Einstein
             .postbody %
