@@ -1,6 +1,6 @@
 
 template :: nav
 
-div#main-container.container %
-  div#main %
+div#main-container %
+  div#main.container %
     {body}

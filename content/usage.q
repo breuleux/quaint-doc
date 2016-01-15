@@ -4,9 +4,6 @@ template :: default
 meta ::
   title = Usage
 
-resources ::
-  toc-scroll.js
-
 store sidebar ::
   toc::
 

@@ -4,9 +4,6 @@ template :: default
 meta ::
   title = Writing plugins
 
-resources ::
-  toc-scroll.js
-
 store sidebar ::
   toc::
 
@@ -171,5 +168,4 @@ plugin, please add it to the list at an appropriate place (you can
 create a new section if needed) and make a pull request :\)
 
 src => https://github.com/breuleux/quaint-doc/blob/master/content/plugins/index.q
-
 

@@ -1,0 +1,58 @@
+{
+    "templates": {
+        "root": "template"
+    },
+    "plugins": {
+        "@breuleux/quaint-my-utils": {
+            "defaultLanguage": null,
+            "highlightTheme": "xcode"
+        },
+        "earlgrey": {
+        },
+        "quaint": true,
+        "look-nice": {
+            "useNav": true,
+            "fonts": {
+                "body": "g:Alegreya:400,400italic,700,700italic",
+                "nav": "g:Exo 2:800,400"
+            },
+            "font-sizes": {
+                "nav": "18px"
+            },
+            "borders": {
+                "nav": "0px"
+            },
+            "widths": {
+                "body": "750px",
+                "sidebar": "250px"
+            },
+            "colors": {
+                "link-visited": "rgb(85, 26, 139)"
+            },
+            "backgrounds": {
+                "body": "#eee",
+                "nav": "#5e2d0c",
+                "table": "#fff",
+                "table-odd": "#fff",
+                "table-even": "#fff",
+                "table-header": "#000"
+            },
+            "extra": "style/style.sass"
+       }
+    },
+    "contentRoot": "content",
+    "output": "out",
+    "resources": {
+        "root": "resources",
+        "files": {
+        }
+    },
+    "server": {
+        "startPage": "index.html"
+    },
+    "files": ["assets"],
+    "sources": "**/*.q",
+    "hostname": "https://breuleux.github.io",
+    "siteRoot": "quaint/",
+    "saveMeta": "content/meta.json"
+}

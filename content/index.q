@@ -5,24 +5,23 @@ meta ::
   title = Quaint
 
 resources ::
-  edit!
-  /resources/owl/owl.carousel.css
-  /resources/owl/owl.theme.css
-  /resources/owl/owl.transitions.css
-  /resources/owl/jquery-1.9.1.min.js
-  /resources/owl/owl.carousel.js
+  resources/owl/owl.carousel.css
+  resources/owl/owl.theme.css
+  resources/owl/owl.transitions.css
+  resources/owl/jquery-1.9.1.min.js
+  resources/owl/owl.carousel.js
 
 [\title !!! \description] =>
   div %
     div.title % {title}
     div.description % {description}
 
-div#main-container.container % [
+div#main-container % [
 
 div#present-container %
-  div#present %
+  div#present.container %
     img.logo %
-       src = {siteroot}assets/quaint-beige.png
+       src = {documents.meta.getRaw{"siteRoot"}}assets/quaint-beige.png
        height = 80px
     div.quaint-word % QUAINT
     div.quaint-description %
@@ -148,10 +147,9 @@ js ::
   });
 
 
-div#main % [
+div#main.container % [
 
-
-div#instructions %
+ div#instructions %
   50 &&
     ;; Edit me!!!
     
@@ -168,7 +166,7 @@ div#instructions %
     This will install the `quaint command on your system. Then you can convert quaint markup to HTML! See usage@@usage.html.
     
     = Learn
-    
+
     * Learn the syntax! @@ syntax.html
     * JavaScript API @@ api.html
     * Check out the plugins @@

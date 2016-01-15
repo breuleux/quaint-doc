@@ -1,55 +1,169 @@
 
-@import url("//fonts.googleapis.com/css?family=Open+Sans|Exo+2:800,400,400italic,700,700italic|Alegreya:400,900,400italic,700,700italic")
-@import url("hl-xcode.css")
-@import util
-@import nav
-@import ed
-@import h
+/* MIXINS
 
-#main
-  line-height: 160%
+$h1sz: 20px
 
-pre
-  margin-left: 5px
-  border-left: 5px solid purple
-  padding-left: 5px
+@mixin square($side)
+  display: inline-block
+  height: $side
+  width: $side
+  margin: 20px
+  z-index: -1
+
+@mixin disk($diam)
+  @include square($diam)
+  border-radius: 50%
+
+@mixin left($size, $factor)
+  position: absolute
+  left: -$size/$factor - 15px
+  bottom: 50%
+  margin: 0px
+  margin-bottom: -$size/2
+
+@mixin ldisk($size, $factor)
+  @include disk($size)
+  @include left($size, $factor)
+
+@mixin lsquare($size, $factor)
+  @include square($size)
+  @include left($size, $factor)
 
 
-table
-  border: 2px solid black
-  border-collapse: collapse
-  th
+/* BODY
+
+
+body
+  line-height: 1.2
+
+
+/* NAV
+
+#logo-link
+  @include row
+  align-items: center
+  > *
+    margin-right: 20px
+  > .quaint-word
+    color: #f0c8a0
+    font-size: 20px
+  > .logo
+    height: 30px
+
+/* .nav-container-desktop
+/*   position: fixed
+/*   top: 0px
+
+/* #present-container, #main-container
+/*   padding-top: 30px
+
+.nav-main > ul > li > a
+  line-height: 30px
+
+.quaint-word
+  font-family: "Exo 2"
+  font-weight: 800
+
+.spacer
+  flex-grow: 1
+
+#sidebar
+  position: fixed
+  left: 0px
+  top: 0px
+  height: 100%
+  padding-top: 30px
+  padding-bottom: 30px
+  width: $width-sidebar
+  box-sizing: border-box
+  #sidebar-contents
+    position: relative
+    height: 100%
+    overflow: auto
+
+ul.toc
+  padding-left: 30px
+  list-style-type: none
+  .toc-expand:before
+    display: inline-block
+    width: 20px
+    content: "+"
     color: white
-    background-color: black
-    text-align: left
-  th, td
-    padding-left: 8px
-    padding-right: 8px
+    text-align: center
+    font-weight: bold
+    background: #5e2d0c
+    margin-left: 10px
+    border-radius: 5px
+    cursor: pointer
+  li.expanded > .toc-expand:before
+    content: "-"
+  li.active > .toc-expand:before
+    background: #aaa
+  ul
+    @include height-out
+    padding-left: 20px
+    list-style-type: none
+    overflow: hidden
+  li.active > a
+    font-weight: bold
+  li.active > ul, li.expanded > ul
+    @include height-in(1000px)
+  a
+    color: #000
+  a.selected:before
+    position: absolute
+    left: 10px
+    content: "\25B6"
+
+ul.toc li
+  padding-bottom: 0px
+
+@media screen and (max-width: $width-body + $width-sidebar * 2 + 100px)
+  #sidebar
+    display: none
 
 
-blockquote
-  margin-left: 10px
-  padding-left: 10px
-  border-left: 5px solid #88f
 
+/* INDEX
 
-.error
-  color: red
-  font-weight: bold
+#present-container
+  background-color: #6e3d1c
+  /* background-color: #c89767
+  /* background-color: #f0c8a0
+  #present
+    @include column
+    align-items: center
+    color: white
+    > .logo
+      margin-top: 40px
+      margin-bottom: 20px
+    > .quaint-description
+      color: #c89767
+      font-size: 25pt
+      margin-bottom: 20px
+    .quaint-word
+      color: #f0c8a0
+      display: inline-block
+      vertical-align: middle
+      font-size: 40pt
 
-div.error
-  margin-top: 10px
-  margin-bottom: 10px
-  white-space: pre
-  font-size: 11pt
-  color: red
-  line-height: 120%
-  font-weight: bold
-
-
-ul.toc code
-  font-size: 10pt
-
+$padding: 30px
+$perrow: 2
+.selling-points
+  @include row
+  flex-wrap: wrap
+  align-items: flex-start
+  width: $width-body
+  > div
+    box-sizing: border-box
+    padding: $padding
+    width: $width-body / $perrow
+    > .title
+      font-weight: bold
+      font-size: 20pt
+    > .description
+      font-style: italic
+      font-size: 16pt
 
 #comparison .comparison
   @include row
@@ -81,8 +195,119 @@ ul.toc code
       color: white
       font-family: Alegreya
 
-
-@media screen and (max-width: $main-width + $sidebar-width * 2 + 100px)
+@media screen and (max-width: $width-body + $width-sidebar * 2 + 100px)
   #comparison .comparison
     @include column
 
+
+/* EDITION
+
+.quaint-example
+  @include row
+  align-items: flex-start
+  margin-top: 5px
+  margin-bottom: 5px
+  .input
+    width: 50%
+    border-left: 5px solid purple
+    padding-left: 8px
+  .input textarea
+    width: 100%
+    font-size: 12pt
+    background-color: transparent
+    border: 0px
+  .output
+    width: 50%
+    margin-left: 10px
+    border-left: 5px solid green
+    padding-left: 8px
+    > ul:first-child, > ol:first-child, > p:first-child, > pre:first-child,
+    > h1:first-child, > h2:first-child, > h3:first-child,
+    > h4:first-child, > h5:first-child, > h6:first-child
+      margin-top: 0px
+    > ul:last-child, > ol:last-child, > p:last-child, > pre:last-child,
+    > h1:last-child, > h2:last-child, > h3:last-child,
+    > h4:last-child, > h5:last-child, > h6:last-child
+      margin-bottom: 0px
+
+#instructions .quaint-example
+  .input
+    border-left: 0px
+  .input textarea
+    background-color: white
+  .output
+    border-left: 0px
+
+/* HEADERS
+
+$h1sz: 20px
+h1
+  position: relative
+h1:before
+  @include lsquare($h1sz, 1)
+  background-color: #5e2d0c
+  color: white
+  content: ""
+
+$h2sz: 10px
+h2
+  position: relative
+h2:before
+  @include ldisk($h2sz, 1)
+  background-color: #aaa
+  color: white
+  content: ""
+
+.output h1:before, .output h2:before
+  display: none
+
+
+/* TRYIT
+
+#tryit
+  flex-grow: 1
+  @include column
+  align-items: center
+  padding-top: 20px
+  padding-bottom: 20px
+  background-color: #eee
+  .quaint-example
+    .input textarea
+      background-color: white
+    .input
+      border-left: 0px
+    .output
+      border-left: 0px
+
+@media screen and (min-width: 1200px)
+  #tryit
+    .quaint-example
+      width: 1200px
+      align-items: stretch
+      flex-grow: 1
+      .input
+        @include column
+      .input textarea
+        flex-grow: 1
+        height: 100%
+        /* background-color: white
+        z-index: 100
+      .input
+        /* border-left: 0px
+        width: 500px
+      .output
+        /* border-left: 0px
+        width: 700px
+
+@media screen and (max-width: 1200px)
+  #tryit
+    .quaint-example
+      @include column
+      .input textarea
+        height: 500px
+      .input
+        width: 100%
+        max-width: $width-body
+      .output
+        width: 100%
+        max-width: $width-body

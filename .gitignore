@@ -5,4 +5,5 @@ lib6
 node_modules
 junk
 egcache
-output
+out
+content/meta.json

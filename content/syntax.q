@@ -4,11 +4,6 @@ template :: default
 meta ::
   title = Syntax
 
-resources ::
-  toc-scroll.js
-  highlight.pack.js
-  edit!
-
 store sidebar ::
   toc::
 
@@ -235,7 +230,7 @@ that case you can escape `[#] to get the desired behavior:
 && Yes@@\#escaping
 
 
-= Whitespace and grouping
+= Whitespace/grouping
 
 
 == Spacing

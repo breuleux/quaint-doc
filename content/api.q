@@ -7,9 +7,6 @@ meta ::
 store sidebar ::
   toc::
 
-resources ::
-  toc-scroll.js
-
 
 = Overview
 

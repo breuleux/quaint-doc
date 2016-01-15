@@ -4,10 +4,16 @@ template :: nav
 meta ::
   title = Try it!
 
-resources ::
-  toc! edit!
-  highlight.pack.js
-  tryit.css
+
+css ::
+  @media screen and (min-width: 1300px) {
+    html, body {
+      height: 100%
+    }
+    #tryit {
+      height: 90%
+    }
+  }
 
 
 div#tryit %
