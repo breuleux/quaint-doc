@@ -1,3 +1,3 @@
 template :: nav
-.container %
+#main.container %
   {body}
