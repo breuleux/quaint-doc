@@ -1,6 +1,6 @@
 {
     "templates": {
-        "root": "template"
+        "root": "templates"
     },
     "plugins": {
         "@breuleux/quaint-my-utils": {

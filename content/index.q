@@ -5,11 +5,11 @@ meta ::
   title = Quaint
 
 resources ::
-  resources/owl/owl.carousel.css
-  resources/owl/owl.theme.css
-  resources/owl/owl.transitions.css
-  resources/owl/jquery-1.9.1.min.js
-  resources/owl/owl.carousel.js
+  owl/owl.carousel.css
+  owl/owl.theme.css
+  owl/owl.transitions.css
+  owl/jquery-1.9.1.min.js
+  owl/owl.carousel.js
 
 [\title !!! \description] =>
   div %
