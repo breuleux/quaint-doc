@@ -4,7 +4,7 @@ template :: default
 meta ::
   title = API
 
-store sidebar ::
+nav side ::
   toc::
 
 
@@ -481,7 +481,7 @@ method redefer(node, function) ::
   and then the `if will be recomputed.
 
 
-method registerDocuments(documents) ::
+method registerDocuments(docs) ::
 
   Register new documents. You would use this if you wanted to create a
   `references document for bibliographies, or a `links document that
@@ -523,7 +523,7 @@ method registerMethods(methods) ::
     engine.berry()  // "juicy!"
 
 
-method registerResolvers(resolvers) ::
+method registerResolvers(res) ::
 
   A resolver is a function that takes a filename or symbol of sorts,
   and returns a string corresponding to the contents. If, for

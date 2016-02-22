@@ -4,7 +4,7 @@ template :: default
 meta ::
   title = Syntax
 
-store sidebar ::
+nav side ::
   toc::
 
 

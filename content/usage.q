@@ -4,7 +4,7 @@ template :: default
 meta ::
   title = Usage
 
-store sidebar ::
+nav side ::
   toc::
 
 = Install
@@ -18,6 +18,126 @@ tool unless you want to use the API@@@api directly or [write your own
 plugins]@@@plugins/write.
 
 
+= Getting started
+
+Run the `quaint command in a new directory with no arguments to enter
+interactive setup. The command will create a configuration file called
+`quaint.json. You usually want to pick the defaults.
+
+You will be asked if you want to install plugins. You can choose from
+[this list]@@@plugins/index.html. At any time you can add/configure
+plugins with the following command:
+
+& quaint --setup plugin-name
+
+
+= How Quaint works
+
+Quaint compiles Quaint source files in a designated content directory,
+and writes the result in an output directory. It also copies 
+
+
+* `contentRoot and `sources determine wh
+
+
+
+
+
+A Quaint project TODO
+
+
+
+* __quaint.json: The configuration file.
+* __templates/~: The template directory.
+* __content/~: The source directory.
+* __content/assets/~: Images, media and other files to copy over.
+* __output/siteRoot/~: The output directory.
+* __output/siteRoot/resources/~: Where Quaint puts stylesheets, scripts and
+  other resources.
+
+
+
+
+
+= `quaint.json
+
+`quaint.json contains the configuration for a Quaint project. Here is
+a list of all options and their meaning:
+
+* __contentRoot: The directory that contains the Quaint source files.
+
+* __sources: An array of files or globs to compile. Use `[**/*.q] to
+  compile all Quaint files. All the paths are relative to `contentRoot.
+
+* __files: A list of files and directories to copy over to the output
+  directory. All the paths are relative to `contentRoot. Unlike
+  `resources.files, these files are simply copied over.
+
+* __templates: Configuration for the template directory.
+  * __root: The root directory for the project's templates.
+  * __default: The name of the default template. Set to `[@none] if you want no
+    default template.
+
+* __output: The output directory.
+
+* __resources: Configuration for the project's resources (CSS, JS, etc.)
+  * __root: The sub-directory of the _output in which the resources will be put.
+    This path is relative to `output.
+  * [__files:] A map from _output resource name to the _input resource; the
+    input resource path is relative to `contentRoot, the output resource path
+    is relative to `resources.root.
+
+    It is important to note that Quaint will _link the resources
+    listed here in _every generated file. That is to say, if you put a
+    stylesheet here, then Quaint will link it in in every `[<head>] of
+    every `[.html] file it generates from a `[.q] file. If you only
+    want to include a resource in a few files, see the
+    `resources@@syntax.html#resources macro.
+
+* __hostname: The domain where you will host your files, for example
+  `http://my-site.com, or `https://personal.example.name:8080~.
+
+* __siteRoot: The path from your domain's root where you will host
+  your files.
+
+
+
+json &
+  {
+    "contentRoot": "content",
+    "sources": [
+      "**/*.q"
+    ],
+    "files": [
+      "assets"
+    ],
+    "templates": {
+      "root": "template",
+      "default": "default"
+    },
+    "output": "output",
+    "resources": {
+      "root": "resources",
+      "files": {
+        "style.css": "style.css",
+        "script.js": "script.js"
+      }
+    },
+    "hostname": "http://localhost",
+    "siteRoot": "/",
+    "server": {
+      "enable": true,
+      "startPage": "index.html",
+      "port": 9137
+    },
+    "watch": true,
+    "plugins": {}
+  }
+
+
+
+
+
 = Usage
 
 Here's the help for the `quaint command:
@@ -26,28 +146,35 @@ Here's the help for the `quaint command:
   Usage: quaint <file ...> [options]
   
   Options:
-    -c, --config    Path to a configuration file with option values (must be JSON)
-                                                        [default: "./quaint.json"]
-    -d, --data      JSON string or file(s) defining field:value pairs to be made
-                    available inside markup (as {field}):
-                    * key:value
-                    * {"key": value, ...}
-                    * filename.json
-                    * prefix::filename.json
-    -e, --eval      Quaint string to parse directly
-    -f, --format    Format (only html currently supported)       [default: "html"]
-    -h, --help      Show help                                            [boolean]
-    -o, --out       File or directory to save the output to
-    -p, --plugin    Plugin(s) to import:
-                    * Quaint file (injected at the beginning)
-                    * Path to JavaScript file
-                    * Local npm module
-                    * Global npm module
-    -s, --stdout    Print to standard out               [boolean] [default: false]
-    -t, --template  Quaint file to use as template, or template directory
-    -v, --verbose   Print information about the operations performed     [boolean]
-    --save-meta     Save meta data in a file (./meta.json if the file is not
-                    specified)                                    [default: false]
+    -c, --config          Path to a configuration file with option values (must be
+                          JSON)                           [default: "quaint.json"]
+    -d, --data            JSON string or file(s) defining field:value pairs to be
+                          made available inside markup (as {field}):
+                          * key:value
+                          * {"key": value, ...}
+                          * filename.json
+                          * prefix::filename.json
+    -e, --eval            Quaint string to parse directly
+    -f, --format          Format (only html currently supported)
+    -h, --help            Show help                                      [boolean]
+    --inline              Inline resources in the HTML
+    -o, --out             File or directory to save the output to
+    -p, --plugin          Plugin(s) to import:
+                          * Quaint file (injected at the beginning)
+                          * Path to JavaScript file
+                          * Local npm module
+                          * Global npm module
+    -r, --resources       Directory where to put the resources
+    --resources-url       URL for the resources directory
+    --serve               Start server on specified port, in output directory
+                                                                  [default: false]
+    -s, --stdout          Print to standard out         [boolean] [default: false]
+    -t, --template        Name of the default template to use
+    --template-directory  Template directory
+    -v, --verbose         Print information about the operations performed
+                                                                         [boolean]
+    --setup               Set up and configure a plugin.          [default: false]
+    -w, --watch           Watch for changes to rebuild            [default: false]
 
 
 = Templates

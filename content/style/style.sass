@@ -1,33 +1,5 @@
 
-/* MIXINS
-
-$h1sz: 20px
-
-@mixin square($side)
-  display: inline-block
-  height: $side
-  width: $side
-  margin: 20px
-  z-index: -1
-
-@mixin disk($diam)
-  @include square($diam)
-  border-radius: 50%
-
-@mixin left($size, $factor)
-  position: absolute
-  left: -$size/$factor - 15px
-  bottom: 50%
-  margin: 0px
-  margin-bottom: -$size/2
-
-@mixin ldisk($size, $factor)
-  @include disk($size)
-  @include left($size, $factor)
-
-@mixin lsquare($size, $factor)
-  @include square($size)
-  @include left($size, $factor)
+@import mixin
 
 
 /* BODY
@@ -35,6 +7,9 @@ $h1sz: 20px
 
 body
   line-height: 1.2
+
+.container
+  margin-bottom: 100px
 
 
 /* NAV
@@ -47,8 +22,18 @@ body
   > .quaint-word
     color: #f0c8a0
     font-size: 20px
-  > .logo
+  > img
     height: 30px
+
+@media screen and (max-device-aspect-ratio: 99/100)
+  #logo-link
+    > .quaint-word
+      font-size: 60px
+    > img
+      padding-right: 10px
+      height: 80px
+
+
 
 /* .nav-container-desktop
 /*   position: fixed
@@ -57,8 +42,8 @@ body
 /* #present-container, #main-container
 /*   padding-top: 30px
 
-.nav-main > ul > li > a
-  line-height: 30px
+/* .nav-main > ul > li > a
+/*   line-height: 30px
 
 .quaint-word
   font-family: "Exo 2"
@@ -67,19 +52,19 @@ body
 .spacer
   flex-grow: 1
 
-#sidebar
-  position: fixed
-  left: 0px
-  top: 0px
-  height: 100%
-  padding-top: 30px
-  padding-bottom: 30px
-  width: $width-sidebar
-  box-sizing: border-box
-  #sidebar-contents
-    position: relative
-    height: 100%
-    overflow: auto
+/* #sidebar
+/*   position: fixed
+/*   left: 0px
+/*   top: 0px
+/*   height: 100%
+/*   padding-top: 30px
+/*   padding-bottom: 30px
+/*   width: $width-sidebar
+/*   box-sizing: border-box
+/*   #sidebar-contents
+/*     position: relative
+/*     height: 100%
+/*     overflow: auto
 
 ul.toc
   padding-left: 30px
@@ -202,21 +187,21 @@ $perrow: 2
 
 /* EDITION
 
-.quaint-example
+.quaint-interactive
   @include row
   align-items: flex-start
   margin-top: 5px
   margin-bottom: 5px
-  .input
+  .quaint-input
     width: 50%
     border-left: 5px solid purple
     padding-left: 8px
-  .input textarea
+  .quaint-input textarea
     width: 100%
     font-size: 12pt
     background-color: transparent
     border: 0px
-  .output
+  .quaint-output
     width: 50%
     margin-left: 10px
     border-left: 5px solid green
@@ -230,12 +215,12 @@ $perrow: 2
     > h4:last-child, > h5:last-child, > h6:last-child
       margin-bottom: 0px
 
-#instructions .quaint-example
-  .input
+#instructions .quaint-interactive
+  .quaint-input
     border-left: 0px
-  .input textarea
+  .quaint-input textarea
     background-color: white
-  .output
+  .quaint-output
     border-left: 0px
 
 /* HEADERS
@@ -258,56 +243,6 @@ h2:before
   color: white
   content: ""
 
-.output h1:before, .output h2:before
+.quaint-output h1:before, .quaint-output h2:before
   display: none
 
-
-/* TRYIT
-
-#tryit
-  flex-grow: 1
-  @include column
-  align-items: center
-  padding-top: 20px
-  padding-bottom: 20px
-  background-color: #eee
-  .quaint-example
-    .input textarea
-      background-color: white
-    .input
-      border-left: 0px
-    .output
-      border-left: 0px
-
-@media screen and (min-width: 1200px)
-  #tryit
-    .quaint-example
-      width: 1200px
-      align-items: stretch
-      flex-grow: 1
-      .input
-        @include column
-      .input textarea
-        flex-grow: 1
-        height: 100%
-        /* background-color: white
-        z-index: 100
-      .input
-        /* border-left: 0px
-        width: 500px
-      .output
-        /* border-left: 0px
-        width: 700px
-
-@media screen and (max-width: 1200px)
-  #tryit
-    .quaint-example
-      @include column
-      .input textarea
-        height: 500px
-      .input
-        width: 100%
-        max-width: $width-body
-      .output
-        width: 100%
-        max-width: $width-body

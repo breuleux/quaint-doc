@@ -4,17 +4,8 @@ template :: nav
 meta ::
   title = Try it!
 
-
-css ::
-  @media screen and (min-width: 1300px) {
-    html, body {
-      height: 100%
-    }
-    #tryit {
-      height: 90%
-    }
-  }
-
+resources ::
+  style/tryit.sass
 
 div#tryit %
   1 &&

@@ -1,14 +1,11 @@
 template :: @minimal
+[[[
 nav ::
-  * a#logo-link %
-      href = {documents.meta.getRaw{"siteRoot"}}/index.html
-      div.quaint-word % QUAINT
-      img.logo %
-        src = {documents.meta.getRaw{"siteRoot"}}/assets/quaint-beige.png
-        height = 30px
+  * inherit#logo-link %
+      [div.quaint-word % QUAINT][@@@ image:quaint-beige.png] @@@ index
 nav ::
   ul % li.spacer %
-nav ::
+nav main|mobile-menu ::
   * Syntax@@@syntax.html
   * Usage@@@usage.html
   * API@@@api.html
@@ -17,8 +14,16 @@ nav ::
     * Contributing@@@plugins/write.html
   * [Try it!]@@@tryit.html
   * Github@@http://github.com/breuleux/quaint
-div#sidebar %
-  div#sidebar-contents %
-    store sidebar :: dump!
+nav mobile ::
+  ul % li.spacer %
+nav mobile ::
+  * inherit#logo-link %
+      [div.quaint-word % QUAINT] @@@ index
+nav mobile ::
+  ul % li.spacer %
+nav mobile ::
+  * inherit#logo-link %
+      [@@@ image:quaint-beige.png] @@@ index
+]]]
 lnnav :: dump!
 {body}

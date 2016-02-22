@@ -1,0 +1,30 @@
+
+/* MIXINS
+
+$h1sz: 20px
+
+@mixin square($side)
+  display: inline-block
+  height: $side
+  width: $side
+  margin: 20px
+  z-index: -1
+
+@mixin disk($diam)
+  @include square($diam)
+  border-radius: 50%
+
+@mixin left($size, $factor)
+  position: absolute
+  left: -$size/$factor - 15px
+  bottom: 50%
+  margin: 0px
+  margin-bottom: -$size/2
+
+@mixin ldisk($size, $factor)
+  @include disk($size)
+  @include left($size, $factor)
+
+@mixin lsquare($size, $factor)
+  @include square($size)
+  @include left($size, $factor)

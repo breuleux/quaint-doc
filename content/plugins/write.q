@@ -4,7 +4,7 @@ template :: default
 meta ::
   title = Writing plugins
 
-store sidebar ::
+nav side ::
   toc::
 
 

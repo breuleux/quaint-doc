@@ -9,9 +9,12 @@
         },
         "earlgrey": {
         },
-        "quaint": true,
+        "quaint": {
+            "preCompute": false
+        },
         "look-nice": {
             "useNav": true,
+            "useSide": true,
             "fonts": {
                 "body": "g:Alegreya:400,400italic,700,700italic",
                 "nav": "g:Exo 2:800,400"
@@ -36,22 +39,26 @@
                 "table-odd": "#fff",
                 "table-even": "#fff",
                 "table-header": "#000"
-            },
-            "extra": "style/style.sass"
+            }
        }
     },
     "contentRoot": "content",
-    "output": "out",
+    "output": "output",
     "resources": {
         "root": "resources",
         "files": {
+            "style.sass": "style/style.sass"
         }
     },
     "server": {
-        "startPage": "index.html"
+        "enable": true,
+        "delay": 300,
+        "port": 9991,
+        "startPage": "index.html",
+        "openBrowser": true
     },
     "files": ["assets"],
-    "sources": "**/*.q",
+    "sources": ["**/*.q"],
     "hostname": "https://breuleux.github.io",
     "siteRoot": "quaint/",
     "saveMeta": "content/meta.json"

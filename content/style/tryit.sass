@@ -1,0 +1,60 @@
+
+/* TRYIT
+
+@media screen and (min-width: 1300px)
+  html, body
+    height: 100%
+  #tryit
+    height: 90%
+
+.container
+  margin-bottom: 0px
+
+#tryit
+  flex-grow: 1
+  @include column
+  align-items: center
+  padding-top: 20px
+  padding-bottom: 20px
+  background-color: #eee
+  .quaint-interactive
+    .quaint-input textarea
+      background-color: white
+    .quaint-input
+      border-left: 0px
+    .quaint-output
+      border-left: 0px
+
+@media screen and (min-width: 1200px)
+  #tryit
+    .quaint-interactive
+      width: 1200px
+      align-items: stretch
+      flex-grow: 1
+      .quaint-input
+        @include column
+      .quaint-input textarea
+        flex-grow: 1
+        height: 100%
+        /* background-color: white
+        z-index: 100
+      .quaint-input
+        /* border-left: 0px
+        width: 500px
+      .quaint-output
+        /* border-left: 0px
+        width: 700px
+
+@media screen and (max-width: 1200px)
+  #tryit
+    .quaint-interactive
+      @include column
+      .quaint-input textarea
+        height: 500px
+      .quaint-input
+        width: 100%
+        max-width: $width-body
+      .quaint-output
+        width: 100%
+        max-width: $width-body
+
