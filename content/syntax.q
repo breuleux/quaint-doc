@@ -905,7 +905,7 @@ are only visible inside that body.
 
 == `store
 
-`store is mostly useful in conjunction with the API@@@api and/or
+`store is mostly useful in conjunction with the API@@@api.html and/or
 templates. With this macro you can push data to an internal "document"
 (a list of references, or a list of script tags to put in <head> for
 instance), and then dump that document somewhere convenient. You don't

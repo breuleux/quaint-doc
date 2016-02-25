@@ -54,7 +54,7 @@ javascript &
   module.exports = myplugin;
 
 
-As for the plugin itself, I recommend reading the api@@@api document
+As for the plugin itself, I recommend reading the api@@@api.html document
 for an overview of the `Engine and `QAst interfaces.
 
 
@@ -160,7 +160,7 @@ bash &
 
 = Plugin list
 
-For convenience there is a [list of plugins]@@@plugins/index on
+For convenience there is a [list of plugins]@@@plugins/index.html on
 Quaint's website.
 
 The source for that page is located here@@{src}. If you write a new

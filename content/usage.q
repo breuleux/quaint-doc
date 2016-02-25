@@ -14,8 +14,8 @@ Assuming you have `npm installed:
 bash & npm install quaint -g
 
 This will install a `quaint command globally. It will be your main
-tool unless you want to use the API@@@api directly or [write your own
-plugins]@@@plugins/write.
+tool unless you want to use the API@@@api.html directly or [write your own
+plugins]@@@plugins/write.html.
 
 
 = Getting started

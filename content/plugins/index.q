@@ -158,5 +158,5 @@ qplugin breuleux/quaint-youtube ::
 = Contributors
 
 Please consult the documentation on
-__[how to write a plugin @@@ plugins/write].
+__[how to write a plugin @@@ plugins/write.html].
 

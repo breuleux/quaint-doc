@@ -2,7 +2,7 @@ template :: @minimal
 [[[
 nav ::
   * inherit#logo-link %
-      [div.quaint-word % QUAINT][@@@ image:quaint-beige.png] @@@ index
+      [div.quaint-word % QUAINT][@@@ image:assets/quaint-beige.png] @@@ index.html
 nav ::
   ul % li.spacer %
 nav main|mobile-menu ::
@@ -18,12 +18,12 @@ nav mobile ::
   ul % li.spacer %
 nav mobile ::
   * inherit#logo-link %
-      [div.quaint-word % QUAINT] @@@ index
+      [div.quaint-word % QUAINT] @@@ index.html
 nav mobile ::
   ul % li.spacer %
 nav mobile ::
   * inherit#logo-link %
-      [@@@ image:quaint-beige.png] @@@ index
+      [@@@ image:assets/quaint-beige.png] @@@ index.html
 ]]]
 lnnav :: dump!
 {body}
