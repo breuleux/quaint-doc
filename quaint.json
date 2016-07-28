@@ -5,9 +5,13 @@
     "plugins": {
         "@breuleux/quaint-my-utils": {
             "defaultLanguage": null,
-            "highlightTheme": "xcode"
+            "highlightTheme": "xcode",
+            "language": "english"
         },
         "earlgrey": {
+        },
+        "smartypants": {
+            "language": "english"
         },
         "quaint": {
             "preCompute": false
