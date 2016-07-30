@@ -151,6 +151,9 @@ qplugin breuleux/quaint-nav ::
 qplugin breuleux/quaint-share-buttons ::
   Put share buttons on your pages (Facebook, Twitter, Reddit, etc.)
 
+qplugin breuleux/quaint-smartypants ::
+  Translate `"" into curly quotes, `[--] into en/em dashes, and so on.
+
 qplugin breuleux/quaint-youtube ::
   Easily embed YouTube videos using their ID.
 
