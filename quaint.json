@@ -1,69 +1,101 @@
 {
-    "templates": {
-        "root": "templates"
+  "sources": [
+    "**/*.q"
+  ],
+  "dataFiles": [],
+  "data": {},
+  "plugins": {
+    "@breuleux/quaint-my-utils": {
+      "defaultLanguage": null,
+      "highlightTheme": "xcode",
+      "language": "english"
     },
-    "plugins": {
-        "@breuleux/quaint-my-utils": {
-            "defaultLanguage": null,
-            "highlightTheme": "xcode",
-            "language": "english"
-        },
-        "earlgrey": {
-        },
-        "smartypants": {
-            "language": "english"
-        },
-        "quaint": {
-            "preCompute": false
-        },
-        "look-nice": {
-            "useNav": true,
-            "useSide": true,
-            "fonts": {
-                "body": "g:Alegreya:400,400italic,700,700italic",
-                "nav": "g:Exo 2:800,400"
-            },
-            "font-sizes": {
-                "nav": "18px"
-            },
-            "borders": {
-                "nav": "0px"
-            },
-            "widths": {
-                "body": "750px",
-                "sidebar": "250px"
-            },
-            "colors": {
-                "link-visited": "rgb(85, 26, 139)"
-            },
-            "backgrounds": {
-                "body": "#eee",
-                "nav": "#5e2d0c",
-                "table": "#fff",
-                "table-odd": "#fff",
-                "table-even": "#fff",
-                "table-header": "#000"
-            }
-       }
+    "earlgrey": {},
+    "smartypants": {
+      "language": "english",
+      "locale": "en",
+      "features": {
+        "backtickQuotes": true,
+        "angleQuotes": false,
+        "quotes": true,
+        "singleQuotes": true,
+        "enDash": true,
+        "emDash": true,
+        "ellipsis": true,
+        "asterism": false,
+        "spacePunctuation": false,
+        "oe": false
+      }
     },
-    "contentRoot": "content",
-    "output": "output",
-    "resources": {
-        "root": "resources",
-        "files": {
-            "style.sass": "style/style.sass"
-        }
+    "quaint": {
+      "preCompute": true
     },
-    "server": {
-        "enable": true,
-        "delay": 300,
-        "port": 9991,
-        "startPage": "index.html",
-        "openBrowser": true
+    "look-nice": {
+      "useNav": true,
+      "useSide": true,
+      "fonts": {
+        "body": "g:Alegreya:400,400italic,700,700italic",
+        "nav": "g:Exo 2:800,400"
+      },
+      "font-sizes": {
+        "nav": "18px"
+      },
+      "borders": {
+        "nav": "0px"
+      },
+      "widths": {
+        "body": "750px",
+        "sidebar": "250px"
+      },
+      "colors": {
+        "link-visited": "rgb(85, 26, 139)"
+      },
+      "backgrounds": {
+        "body": "#eee",
+        "nav": "#5e2d0c",
+        "table": "#fff",
+        "table-odd": "#fff",
+        "table-even": "#fff",
+        "table-header": "#000"
+      }
+    }
+  },
+  "inject": [],
+  "contentRoot": "content",
+  "output": "output",
+  "format": "html",
+  "templates": {
+    "default": "@minimal",
+    "root": "templates"
+  },
+  "resources": {
+    "root": "resources",
+    "inline": false,
+    "files": {
+      "style.sass": "style/style.sass"
     },
-    "files": ["assets"],
-    "sources": ["**/*.q"],
-    "hostname": "https://breuleux.github.io",
-    "siteRoot": "quaint/",
-    "saveMeta": "content/meta.json"
+    "url": "resources"
+  },
+  "meta": {
+    "file": null,
+    "sortBy": "title"
+  },
+  "watch": true,
+  "hostname": "https://breuleux.github.io",
+  "siteRoot": "quaint/",
+  "server": {
+    "enable": true,
+    "delay": 300,
+    "port": 9991,
+    "startPage": "index.html",
+    "openBrowser": true
+  },
+  "verbose": false,
+  "files": [
+    "assets"
+  ],
+  "saveMeta": "content/meta.json",
+  "actualOutput": "output/quaint/",
+  "_configFile": "quaint.json",
+  "_configExists": true
 }
