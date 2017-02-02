@@ -8,12 +8,18 @@
     "url": "https://github.com/breuleux/quaint-doc"
   },
   "dependencies": {
-    "earlgrey": ">= 0.0.13",
-    "earlgrey-runtime": ">= 0.0.11",
+    "@breuleux/engage-config": ">= 0.0.1",
+    "@breuleux/quaint-my-utils": "^0.1.0",
+    "earl-gulp": "0.0.3",
+    "earlgrey": "^0.1.0",
+    "earlgrey-runtime": "^0.1.0",
     "gulp": "^3.9.0",
-    "earl-gulp": "^0.0.2",
     "node-static": "^0.7.7",
-    "@breuleux/engage-config": ">= 0.0.1"
+    "quaint-earlgrey": "^0.1.0",
+    "quaint-javascript": "^0.1.0",
+    "quaint-look-nice": "^0.1.0",
+    "quaint-quaint": "^0.1.0",
+    "quaint-smartypants": "^0.1.2"
   },
   "devDependencies": {
     "jspm": "^0.16.1"
