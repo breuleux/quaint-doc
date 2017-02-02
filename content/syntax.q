@@ -122,7 +122,7 @@ Of course, you may think aligning table elements is a little annoying,
 or perhaps your table is stored in a JSON file and you would like to
 make a table automatically for it.
 
-In those cases I recommend you use [`format @@ #format] instead.
+;; In those cases I recommend you use [`format @@ #format] instead.
 
 
 == Definitions
@@ -730,6 +730,8 @@ See Loops @@ #loops
 See here @@ #htmlmacro
 
 
+;;[
+
 == `format
 
 `format lets you format JSON (and eventually other formats through
@@ -780,7 +782,7 @@ a table out of what you have:
 If your data is in a file, you can import it like such:
 
 & format data.json:table ::
-
+]
 
 == `include
 
