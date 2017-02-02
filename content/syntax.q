@@ -567,18 +567,11 @@ branch:
 && meta :: x = yes
    meta::x !! no
 
-But be careful: if you want to set metadata to a falsey value, you
-need to use `[:] and not `[=].
+They also trigger the false branch if they are set to "false":
 
 && meta ::
      a = false
-     b: false
    * meta::a ?? yes !! no
-   * meta::b ?? yes !! no
-
-That's because the definition for `a generates a Quaint node, that
-is to say, a string of sorts, whereas the latter tries to interpret
-the value as JSON.
 
 == On variables
 
@@ -652,7 +645,9 @@ this:
 == On metadata
 
 && meta ::
-     tags: ["Cool", "Wow"]
+     tags =
+       * Cool
+       * Wow
    each meta::tags tag ::
      * Tagged: {tag}!
 
@@ -820,6 +815,7 @@ lets you print out the data elsewhere in the file.
 
      You are reading meta::title by meta::author.
 
+;; [
 You may define a field either with `[=] or `[:]. The difference is
 that the former is interpreted with Quaint and the latter as JSON or
 as a plain string. You can see the difference in those examples:
@@ -841,6 +837,7 @@ as a plain string. You can see the difference in those examples:
      b: false
    * meta::a ?? yes !! no
    * meta::b ?? yes !! no
+]
 
 
 == `plugin
@@ -1018,7 +1015,7 @@ If you want more information about an error, a stack trace for
 example, you can dump the `errors sub-document. Each error will
 contain a link to its corresponding stack trace.
 
-4 && An error [format json :: blah] and another {1 +}, woe is me!
+4 && An error {blah} and another {1 +}, woe is me!
 
      dump::errors
 
