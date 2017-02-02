@@ -118,6 +118,10 @@ qplugin breuleux/quaint-mathjax ::
   Includes [mathjax]@@https://www.mathjax.org/, which lets you write
   math with LaTeX syntax.
 
+qplugin breuleux/quaint-katex ::
+  Includes [katex]@@https://khan.github.io/KaTeX/, which also lets you write
+  math with LaTeX syntax.
+
 qplugin breuleux/quaint-quaint ::
   Embed interactive Quaint editors inside your pages.
 
