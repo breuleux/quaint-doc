@@ -182,7 +182,21 @@ div#main.container % [
         margin-top:50px
       @@image:assets/quaint-small.png
 
+= Made with Quaint
+
+[\label ## \gh ## \url] =>
+  [{label} @@ {url}] --- __(source @@ https://github.com/breuleux/{gh})
+
+For practical examples of Quaint markup in the wild, check out the
+source code for the following sites (if available):
+
+* Quaint's documentation (this site) ## quaint-doc ## index.html
+* The Earl Grey language's documentation ## eg-doc ## http://earl-grey.io
+* My blog ## blog ## http://breuleux.net
+* The Outside Word @@ http://outsideword.com
+
 ]
+
 
 div.spacer1 % []
 
